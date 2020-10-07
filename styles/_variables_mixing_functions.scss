@@ -1,0 +1,12 @@
+//$main-blue: #1D72C2;
+$blue: #0683F9;
+$light-blue: #8EC7FC;
+$green: #429C41;
+$lacre: #BB3E3F;
+//$gray: #E8E8E8;
+$bright-red: #F03738;
+//$btn-gray: #CCCCCC;
+//font-family: 'Open Sans', sans-serif; 400 700
+@function vw($pixeles, $view_width) {
+    @return #{$pixeles/$view_width*100}vw;
+}

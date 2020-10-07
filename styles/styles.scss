@@ -1,0 +1,12 @@
+$primary: #1D72C2;
+$secondary: #CCCCCC;
+$light: #E8E8E8;
+$danger: #DE0028;
+$warning: #FF6F00;
+$transparent: #FFC700;
+$info: #1CC1F5;
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import './reset';
+@import './general';
+@import './variables_mixing_functions';
+@import './nav';

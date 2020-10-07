@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" sizes="32x32" href="./assets/logo.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles/styles.css">
+    <title>Data Warehouse</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-0">
+        <a class="navbar-brand" href="#">
+            <img class="ml-4" src="./assets/logo.svg" width="50" height="50" alt="" loading="lazy">
+        </a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link mx-1 active" href="#">Contactos<span class="sr-only">(current)</span></a>
+                <a class="nav-link mx-1" href="#">Compañías</a>
+                <a class="nav-link mx-1" href="#">Usuarios</a>
+                <a class="nav-link mx-1" href="#">Región / Ciudad</a>
+            </div>
+        </div>
+    </nav>
+    <main class="main mx-4">
+        <section class="">
+            <h1 class="contacts mt-5 mb-3">Contactos</h1>
+            <div class="d-flex flex-row justify-content-between">
+                <div class="d-flex flex-row">
+                    <div class="input-group filter mr-2">
+                        <input type="text" class="form-control filter-input" aria-label="Text input with dropdown button">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary dropdown-toggle filter-arrow" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                            <form action="" class="dropdown-form dropdown-menu filter-menu p-3">
+                                <div class="form-group mt-1 pb-2 row">
+                                    <label for="name" class="col-md-4 col-form-label col-form-label-sm">Nombre del contacto</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control form-control-plaintext form-control-sm border-bottom" id="name" placeholder="Introduce el nombre del contacto">
+                                    </div>
+                                </div>
+                                <div class="form-group py-2 row">
+                                    <label for="role" class="col-md-4 col-form-label col-form-label-sm">Cargo</label>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control form-control-plaintext form-control-sm border-bottom" id="role" placeholder="Introduce el cargo del contacto">
+                                    </div>
+                                </div>
+                                <div class="form-group py-2 row">
+                                    <label for="pais/region" class="col-md-4 col-form-label col-form-label-sm">País/Región</label>
+                                    <div class="col-md-5">
+                                        <select name="pais/region" class="form-control form-control-sm" id="pais/region">
+                                            <option>Todos</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group py-2 row">
+                                    <label for="compania" class="col-md-4 col-form-label col-form-label-sm">Compañía</label>
+                                    <div class="col-md-5">
+                                        <select name="compania" class="form-control form-control-sm" id="compania">
+                                            <option>Todas</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group py-2 row">
+                                    <label for="canal-favorito" class="col-md-4 col-form-label col-form-label-sm">Canal favorito</label>
+                                    <div class="col-md-5">
+                                        <select name="canal-favorito" class="form-control form-control-sm" id="canal-favorito">
+                                            <option>Cualquiera</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group pt-2 mb-1 row">
+                                    <label for="interes" class="col-md-4 col-form-label col-form-label-sm">Interés</label>
+                                    <div class="col-md-5">
+                                        <select name="interes" class="form-control form-control-sm" id="interes">
+                                            <option>Cualquiera</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-outline-secondary btn-search"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
+                <div class="d-flex flex-row justify-content-end">
+                    <button type="button" class="btn btn-outline-primary mr-2"><i class="fa fa-upload" aria-hidden="true"></i></button>
+                    <div class="dropdown d-inline">
+                        <button class="btn btn-outline-primary dropdown-toggle btn-size mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Exportar contactos
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item primary-color mt-3" href="#">Exportar seleccionados</a>
+                            <a class="dropdown-item primary-color mt-3 mb-3" href="#">Todos los filtrados</a>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-size">Agregar contacto</button>
+                </div>
+            </div>
+            <div class="filter-choices mt-1">
+                <button type="button" class="btn btn-light btn-xsm">Argentina <i class="fa fa-times" aria-hidden="true"></i></button>
+            </div>
+            <div class="selected-contacts d-flex justify-content-between align-items-center mt-4 mb-1">
+                <button type="button" class="btn btn-xsm btn-tag disable">2 seleccionados</button>
+                <button type="button" class="btn btn-outline-primary btn-size border-0"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar contactos</button>
+            </div>
+            <table class="table table-borderless table-bordered table-responsive-lg table-hover">
+                <thead>
+                    <tr class="table-bordered">
+                        <th class="align-middle" scope="col"><input class="ml-3" type="checkbox" name="all-users"></th>
+                        <th class="align-middle" scope="col">Contacto <i class="fa fa-sort" aria-hidden="true"></i></th>
+                        <th class="align-middle" scope="col">País/Región <i class="fa fa-sort" aria-hidden="true"></i></th>
+                        <th class="align-middle" scope="col">Compañía <i class="fa fa-sort" aria-hidden="true"></i></th>
+                        <th class="align-middle" scope="col">Cargo <i class="fa fa-sort" aria-hidden="true"></i></th>
+                        <th class="align-middle" scope="col">Canal preferido</th>
+                        <th class="align-middle" scope="col">Interés <i class="fa fa-sort" aria-hidden="true"></i></th>
+                        <th class="align-middle text-center" scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="align-middle"><input class="ml-3" type="checkbox" name="user-info"></td>
+                        <td class="align-middle">
+                            <div class="d-flex flex-row align-items-center">
+                                <img src="https://i.picsum.photos/id/1027/2848/4272.jpg?hmac=EAR-f6uEqI1iZJjB6-NzoZTnmaX0oI0th3z8Y78UpKM" alt="user pic" class="user-img rounded-circle">
+                                <div class="ml-2">
+                                    <p>Camila Soledad Panto</p>
+                                    <p class="email text-black-50">camilapanto123@gmail.com</p>
+                                </div>
+                            </div>
+
+                        </td>
+                        <td class="align-middle">
+                            <p>Argentina</p>
+                            <p class="region text-black-50">Latam</p>
+                        </td>
+                        <td class="align-middle">Ecom Experts</td>
+                        <td class="align-middle">UX Designer</td>
+                        <td class="align-middle"><button type="button" class="btn btn-xsm btn-tag">Whatsapp</button></td>
+                        <td class="align-middle">
+                            <div class="div-interest d-inline-flex align-items-center">
+                                <p class="interest">100%</p>
+                                <div class="progress ml-3">
+                                    <div class="progress-bar w-100 bg-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle text-center text-black-50"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+
+
+
+
+        </section>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="./scripts/prueba.js"></script>
+</body>
+
+</html>

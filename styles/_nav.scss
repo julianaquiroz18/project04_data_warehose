@@ -1,0 +1,88 @@
+.contacts {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+label,
+input {
+    font-size: 0.7rem;
+}
+
+.filter {
+    width: vw(502, 1366);
+    &-arrow {
+        border-left: none;
+        color: black;
+        background-color: white !important;
+    }
+    &-input {
+        border-right: none;
+    }
+    &-menu {
+        width: vw(502, 1366);
+        transform: translate3d(0px, 34px, 0px) !important;
+    }
+}
+
+.btn-search {
+    color: $primary;
+    &:hover {
+        color: white;
+    }
+}
+
+.btn-size {
+    width: 195.31px;
+}
+
+.btn-xsm {
+    font-size: 0.7rem;
+    padding: 3px 6px;
+}
+
+.btn-tag {
+    color: $blue;
+    background-color: #8EC7FC26;
+    &:hover {
+        color: white;
+        background-color: $blue;
+    }
+}
+
+.disable {
+    pointer-events: none
+}
+
+.primary-color.dropdown-item {
+    color: $primary;
+}
+
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+    background-color: $light;
+}
+
+td {
+    height: 56px;
+}
+
+.table th {
+    height: 67px;
+    padding-top: 22px;
+}
+
+.progress {
+    height: 8px;
+    width: 109px;
+}
+
+.interest,
+.region,
+.email {
+    font-size: 0.8rem;
+}
+
+.user-img {
+    width: 24px;
+    height: 24px;
+}
