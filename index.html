@@ -28,7 +28,7 @@
     </nav>
     <main class="main mx-4">
         <section class="">
-            <h1 class="contacts mt-5 mb-3">Contactos</h1>
+            <h1 class="title mt-5 mb-3">Contactos</h1>
             <div class="d-flex flex-row justify-content-between">
                 <div class="d-flex flex-row">
                     <div class="input-group filter mr-2">
@@ -106,7 +106,7 @@
                     <button type="button" class="btn btn-outline-secondary btn-search"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </div>
                 <div class="d-flex flex-row justify-content-end">
-                    <button type="button" class="btn btn-outline-primary mr-2"><i class="fa fa-upload" aria-hidden="true"></i></button>
+                    <button type="button" class="btn btn-outline-primary mr-2" data-toggle="modal" data-target="#import-contacts-modal"><i class="fa fa-upload" aria-hidden="true"></i></button>
                     <div class="dropdown d-inline">
                         <button class="btn btn-outline-primary dropdown-toggle btn-size mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Exportar contactos
@@ -116,7 +116,7 @@
                             <a class="dropdown-item primary-color mt-3 mb-3" href="#">Todos los filtrados</a>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary btn-size">Agregar contacto</button>
+                    <button type="button" class="btn btn-primary btn-size" data-toggle="modal" data-target="#new-contact">Agregar contacto</button>
                 </div>
             </div>
             <div class="filter-choices mt-1">
@@ -124,7 +124,8 @@
             </div>
             <div class="selected-contacts d-flex justify-content-between align-items-center mt-4 mb-1">
                 <button type="button" class="btn btn-xsm btn-tag disable">2 seleccionados</button>
-                <button type="button" class="btn btn-outline-primary btn-size border-0"><i class="fa fa-trash" aria-hidden="true"></i> Eliminar contactos</button>
+                <button type="button" class="btn btn-outline-primary btn-size border-0" data-toggle="modal" data-target="#delete-contacts"><i class="fa fa-trash" aria-hidden="true"></i> 
+                    Eliminar contactos</button>
             </div>
             <table class="table table-borderless table-bordered table-responsive-lg table-hover">
                 <thead>
@@ -172,14 +173,93 @@
 
                 </tbody>
             </table>
-
-
-
-
-
-
         </section>
     </main>
+
+    <div class="modal fade" id="import-contacts-modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img src="./assets/import.png" alt="Import logo">
+                    <p class="pt-4">Selecciona el archivo de tu ordenador para importar tus contactos.</p>
+                </div>
+                <div class="modal-footer border-top-0 justify-content-around">
+                    <button type="button" class="btn btn-outline-primary btn-lg modal-button" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary btn-lg modal-button">Importar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="delete-contacts" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <img src="./assets/delete.png" alt="Delete logo">
+                    <p class="pt-4">¿Seguro que deseas eliminar los contactos seleccionados?</p>
+                </div>
+                <div class="modal-footer border-top-0 justify-content-around">
+                    <button type="button" class="btn btn-outline-primary btn-lg modal-button" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger btn-lg modal-button">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="new-contact" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-primary new-contact-modal-header">
+                    <h1 class="title m-0 text-white">Nuevo contacto</h1>
+                    <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body prueba">
+                    <form>
+                        <div class="form-group form-row border py-4 px-2 borders-new-user-modal bg-white">
+                            <div class="col- position-relative ml-2 mr-3">
+                                <img src="./assets/pngwing.com.png" alt="user pic" class="new-user-img rounded-circle border border-primary borders-new-user-modal bg-secondary">
+                                <button type="button" class="btn btn-primary rounded-circle camera-button p-0 border-white position-absolute"><i class="fa fa-camera" aria-hidden="true"></i></button>
+                            </div>
+                            <div class="col">
+                                <label for="name">Nombre<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="col">
+                                <label for="lastname">Apellido<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="lastname">
+                            </div>
+                            <div class="col">
+                                <label for="position">Cargo<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="position">
+                            </div>
+                            <div class="col">
+                                <label for="email">Email<span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="email">
+                            </div>
+                            <div class="col">
+                                <label for="company">Compañía<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="company" placeholder="Ingresar el nombre de la compañía">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Another label</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Another label</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-top-0">
+                    <button type="button" class="btn btn-outline-primary btn-lg modal-button border-0" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success btn-lg modal-button">Guardar contacto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
