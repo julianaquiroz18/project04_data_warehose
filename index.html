@@ -148,21 +148,21 @@
                                 <img src="https://i.picsum.photos/id/1027/2848/4272.jpg?hmac=EAR-f6uEqI1iZJjB6-NzoZTnmaX0oI0th3z8Y78UpKM" alt="user pic" class="user-img rounded-circle">
                                 <div class="ml-2">
                                     <p>Camila Soledad Panto</p>
-                                    <p class="email text-black-50">camilapanto123@gmail.com</p>
+                                    <p class="email-table text-black-50">camilapanto123@gmail.com</p>
                                 </div>
                             </div>
 
                         </td>
                         <td class="align-middle">
                             <p>Argentina</p>
-                            <p class="region text-black-50">Latam</p>
+                            <p class="region-table text-black-50">Latam</p>
                         </td>
                         <td class="align-middle">Ecom Experts</td>
                         <td class="align-middle">UX Designer</td>
                         <td class="align-middle"><button type="button" class="btn btn-xsm btn-tag">Whatsapp</button></td>
                         <td class="align-middle">
                             <div class="div-interest d-inline-flex align-items-center">
-                                <p class="interest">100%</p>
+                                <p class="interest-percentage">100%</p>
                                 <div class="progress ml-3">
                                     <div class="progress-bar w-100 bg-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
@@ -218,48 +218,149 @@
                     <form>
                         <div class="form-group form-row border py-4 px-2 borders-new-user-modal bg-white">
                             <div class="col- position-relative ml-2 mr-3">
-                                <img src="./assets/pngwing.com.png" alt="user pic" class="new-user-img rounded-circle border border-primary borders-new-user-modal bg-secondary">
+                                <img src="./assets/avatar.png" alt="user pic" class="new-user-img rounded-circle border border-primary borders-new-user-modal bg-secondary">
                                 <button type="button" class="btn btn-primary rounded-circle camera-button p-0 border-white position-absolute"><i class="fa fa-camera" aria-hidden="true"></i></button>
                             </div>
                             <div class="col">
-                                <label for="name">Nombre<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="name">
+                                <label for="name" class="col-form-label col-form-label-sm">Nombre<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-sm" id="name" name="name">
                             </div>
                             <div class="col">
-                                <label for="lastname">Apellido<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="lastname">
+                                <label for="lastname" class="col-form-label col-form-label-sm">Apellido<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-sm" id="lastname" name="lastname">
                             </div>
                             <div class="col">
-                                <label for="position">Cargo<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="position">
+                                <label for="position" class="col-form-label col-form-label-sm">Cargo<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-sm" id="position" name="position">
                             </div>
                             <div class="col">
-                                <label for="email">Email<span class="text-danger">*</span></label>
-                                <input type="email" class="form-control" id="email">
+                                <label for="email" class="col-form-label col-form-label-sm">Email<span class="text-danger">*</span></label>
+                                <input type="email" class="form-control form-control-sm" id="email" name="email">
                             </div>
                             <div class="col">
-                                <label for="company">Compañía<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="company" placeholder="Ingresar el nombre de la compañía">
+                                <label for="company" class="col-form-label col-form-label-sm">Compañía<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control form-control-sm" id="company" name="company" placeholder="Ingresar el nombre de la compañía">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2">Another label</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+                        <div class="form-group form-row">
+                            <div class="col">
+                                <label for="region" class="col-form-label col-form-label-sm">Region</label>
+                                <select class="form-control form-control-sm" name="region" id="region">
+                                    <option selected>Seleccionar región</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option> 
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="country" class="col-form-label col-form-label-sm">País</label>
+                                <select class="form-control form-control-sm" name="country" id="country" disabled>
+                                    <option selected>Seleccionar país</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option> 
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="city" class="col-form-label col-form-label-sm">Ciudad</label>
+                                <select class="form-control form-control-sm" name="city" id="city" disabled>
+                                    <option selected>Seleccionar ciudad</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option> 
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="address" class="col-form-label col-form-label-sm">Direccion</label>
+                                <input type="text" class="form-control form-control-sm" id="address" name="address" placeholder="Ingresa una dirección" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="interest-rage" class="col-form-label col-form-label-sm">Interés</label>
+                                <input type="range" min="0" max="100" step="25" value="0" list="interest-list" name="interest-rage" class="form-control form-control-sm interest-range mx-3 p-0" id="interest-rage">
+                                <datalist id="interest-list">
+                                    <option value="25">
+                                    <option value="50">
+                                    <option value="75">
+                                </datalist>
+                            </div>
+                            <div class="col-xs">
+                                <label for="interest-select" class="col-form-label col-form-label-sm text-white">Interés</label>
+                                <select class="form-control form-control-sm interest-select" name="interest-value" id="interest-select">
+                                    <option selected value="0">0%</option>
+                                    <option value="25">25%</option>
+                                    <option value="50">50%</option>
+                                    <option value="75">75%</option>
+                                    <option value="100">100%</option> 
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2">Another label</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
+                        <div class="form-group form-row contact-channel-info">
+                            <div class="col">
+                                <label for="contact-channel" class="col-form-label col-form-label-sm">Canal de contacto</label>
+                                <select class="form-control form-control-sm" name="contact-channel" id="contact-channel">
+                                    <option selected>Seleccionar canal</option>
+                                    <option value="email">Email</option>
+                                    <option value="facebook">Facebook</option>
+                                    <option value="instagram">Instagram</option>
+                                    <option value="whatsapp">Whatsapp</option> 
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="userAcount" class="col-form-label col-form-label-sm">Cuenta de usuario</label>
+                                <input type="text" class="form-control form-control-sm" id="userAcount" name="userAcount" placeholder="@ejemplo" disabled>
+                            </div>
+                            <div class="col">
+                                <label for="preferences" class="col-form-label col-form-label-sm">Preferencias</label>
+                                <select class="form-control form-control-sm" name="preferences" id="preferences" disabled>
+                                    <option selected>Sin preferencia</option>
+                                    <option value="favorite">Canal favorito</option>
+                                    <option value="do not disturb">No molestar</option> 
+                                </select>
+                            </div>
+                            <div class="col d-flex align-items-end">
+                                <button type="button" class="btn btn-primary form-control form-control-sm btn-sm add-channel" disabled><i class="fa fa-plus" aria-hidden="true"></i> Agregar canal</button>
+                            </div>
+                        </div>
+                        <div class="form-group form-row contact-channel-info">
+                            <div class="col">
+                                <label for="contact-channel" class="col-form-label col-form-label-sm">Canal de contacto</label>
+                                <select class="form-control form-control-sm" name="contact-channel" id="contact-channel">
+                                    <option selected>Seleccionar canal</option>
+                                    <option value="email">Email</option>
+                                    <option value="facebook">Facebook</option>
+                                    <option value="instagram">Instagram</option>
+                                    <option value="whatsapp">Whatsapp</option> 
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="userAcount" class="col-form-label col-form-label-sm">Cuenta de usuario</label>
+                                <input type="text" class="form-control form-control-sm" id="userAcount" name="userAcount" placeholder="@ejemplo">
+                            </div>
+                            <div class="col">
+                                <label for="preferences" class="col-form-label col-form-label-sm">Preferencias</label>
+                                <select class="form-control form-control-sm" name="preferences" id="preferences">
+                                    <option selected>Sin preferencia</option>
+                                    <option value="favorite">Canal favorito</option>
+                                    <option value="do not disturb">No molestar</option> 
+                                </select>
+                            </div>
+                            <div class="col d-flex align-items-end flex-nowrap">
+                                <button type="button" class="btn btn-outline-primary form-control form-control-sm btn-sm add-channel mr-2"><i class="fa fa-pencil" aria-hidden="true"></i> Editar canal</button>
+                                <button type="button" class="btn btn-outline-secondary form-control form-control-sm btn-sm add-channel"><i class="fa fa-trash" aria-hidden="true"></i>  Eliminar canal</button>
+                            </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer border-top-0">
-                    <button type="button" class="btn btn-outline-primary btn-lg modal-button border-0" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-success btn-lg modal-button">Guardar contacto</button>
+                    <button type="button" class="btn btn-outline-primary btn-lg modal-button border-0" data-dismiss="modal" disabled>Cancelar</button>
+                    <button type="button" class="btn btn-success btn-lg modal-button" disabled>Guardar contacto</button>
                 </div>
             </div>
         </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>

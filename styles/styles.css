@@ -10977,10 +10977,9 @@ td {
   width: 109px;
 }
 
-.interest,
-.region,
-.email,
-label {
+.interest-percentage,
+.region-table,
+.email-table {
   font-size: 0.8rem;
 }
 
@@ -11050,5 +11049,22 @@ p {
 
 .prueba {
   margin-top: -7%;
+}
+
+.interest-range {
+  width: 235px;
+}
+
+.contact-channel-info {
+  width: 70%;
+}
+
+.contact-channel-info-edit {
+  width: 80%;
+}
+
+.add-channel {
+  width: 70%;
+  min-width: 70%;
 }
 /*# sourceMappingURL=styles.css.map */

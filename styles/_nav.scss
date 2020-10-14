@@ -73,10 +73,9 @@ td {
     width: 109px;
 }
 
-.interest,
-.region,
-.email,
-label {
+.interest-percentage,
+.region-table,
+.email-table {
     font-size: 0.8rem;
 }
 
@@ -109,8 +108,6 @@ p {
 
 .borders-new-user-modal {
     border: 3px solid $blue !important;
-    // border-width: 3px !important;
-    // border-color: $blue !important;
     border-radius: 8px;
 }
 
@@ -135,4 +132,20 @@ p {
 
 .prueba {
     margin-top: -7%;
+}
+
+.interest-range {
+    width: 235px;
+}
+
+.contact-channel-info {
+    width: 70%;
+    &-edit {
+        width: 80%;
+    }
+}
+
+.add-channel {
+    width: 70%;
+    min-width: 70%;
 }
