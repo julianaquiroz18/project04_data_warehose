@@ -8,7 +8,7 @@
     <link rel="icon" sizes="32x32" href="./assets/logo.svg" type="image/svg+xml">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="./styles/styles.css">
+    <link rel="stylesheet" href="../styles/styles.css">
     <title>Data Warehouse</title>
 </head>
 
@@ -20,9 +20,9 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link mx-1 active" href="#">Contactos<span class="sr-only">(current)</span></a>
-                <a class="nav-link mx-1" href="#">Compañías</a>
-                <a class="nav-link mx-1" href="#">Usuarios</a>
-                <a class="nav-link mx-1" href="#">Región / Ciudad</a>
+                <a class="nav-link mx-1" href="./companies.html">Compañías</a>
+                <a class="nav-link mx-1" href="./users.html">Usuarios</a>
+                <a class="nav-link mx-1" href="./region-city.html">Región / Ciudad</a>
             </div>
         </div>
     </nav>
@@ -168,9 +168,12 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="align-middle text-center text-black-50"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></td>
+                        <td class="align-middle text-center">
+                            <button type="button" class="btn text-black-50"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-lg text-black-50 d-none"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button type="button" class="btn btn-lg text-black-50 d-none"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                        </td>
                     </tr>
-
                 </tbody>
             </table>
         </section>
@@ -179,7 +182,7 @@
     <div class="modal fade" id="import-contacts-modal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
-                <div class="modal-body text-center">
+                <div class="modal-body text-center mt-1">
                     <img src="./assets/import.png" alt="Import logo">
                     <p class="pt-4">Selecciona el archivo de tu ordenador para importar tus contactos.</p>
                 </div>
@@ -195,7 +198,7 @@
     <div class="modal fade" id="delete-contacts" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
-                <div class="modal-body text-center">
+                <div class="modal-body text-center mt-1">
                     <img src="./assets/delete.png" alt="Delete logo">
                     <p class="pt-4">¿Seguro que deseas eliminar los contactos seleccionados?</p>
                 </div>
@@ -214,7 +217,7 @@
                     <h1 class="title m-0 text-white">Nuevo contacto</h1>
                     <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
                 </div>
-                <div class="modal-body prueba">
+                <div class="modal-body">
                     <form>
                         <div class="form-group form-row border py-4 px-2 borders-new-user-modal bg-white">
                             <div class="col- position-relative ml-2 mr-3">
@@ -364,7 +367,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <script src="./scripts/prueba.js"></script>
+    <script src="../scripts/contacts.js"></script>
 </body>
 
 </html>

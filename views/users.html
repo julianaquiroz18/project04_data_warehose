@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" sizes="32x32" href="./assets/logo.svg" type="image/svg+xml">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/styles.css">
+    <title>Data Warehouse</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-0">
+        <a class="navbar-brand" href="#">
+            <img class="ml-4" src="./assets/logo.svg" width="50" height="50" alt="" loading="lazy">
+        </a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link mx-1" href="./contacts.html">Contactos</a>
+                <a class="nav-link mx-1" href="./companies.html">Compañías</a>
+                <a class="nav-link mx-1 active" href="#">Usuarios<span class="sr-only">(current)</span></a>
+                <a class="nav-link mx-1" href="./region-city.html">Región / Ciudad</a>
+            </div>
+        </div>
+    </nav>
+    <main class="px-4 pt-1">
+        <div class="d-flex flex-row justify-content-between align-items-center mt-5 mb-3 ">
+            <h4 class="text-primary font-weight-bold">Usuarios</h4>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new-user">Crear usuario</button>
+        </div>
+        <table class="table table-sm table-borderless table-bordered table-responsive-lg table-hover">
+            <thead class="font-weight-bold">
+                <tr class="table-bordered">
+                    <th class="align-middle pl-5" scope="col">Nombre</th>
+                    <th class="align-middle" scope="col">Apellido</th>
+                    <th class="align-middle pl-5" scope="col">Email</th>
+                    <th class="align-middle" scope="col">Perfil</th>
+                    <th class="align-middle" scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="align-middle pl-5">Juliana</td>
+                    <td class="align-middle">Quiroz</td>
+                    <td class="align-middle pl-5">julianaquiroz18@hotmail.com</td>
+                    <td class="align-middle">Administrador</td>
+                    <td class="align-middle">
+                        <button type="button" class="btn btn-lg text-black-50 ml-n3"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-lg text-black-50"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+    <div class="modal fade" id="new-user" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+                <div class="modal-header border-0 mx-3 mt-2 mb-4">
+                    <h1 class="text-primary">Crear usuario</h1>
+                    <button type="button" class="close text-primary" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form class="col">
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Apellido</label>
+                            <input type="text" class="form-control" id="lastname" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                        </div>
+                        <div class="form-group">
+                            <label for="profile">Perfil</label>
+                            <select class="form-control" name="profile" id="profile">
+                                <option selected>Seleccionar perfil de usuario</option>
+                                <option value="admin">Administrador</option>
+                                <option value="user">Usuario</option> 
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Contraseña</label>
+                            <input type="password" class="form-control" id="password">
+                        </div>
+                        <div class="form-group">
+                            <label for="repeat-password">Repetir contraseña</label>
+                            <input type="password" class="form-control" id="repeat-password">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-top-0">
+                    <button type="button" class="btn btn-outline-primary modal-button" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary modal-button" data-dismiss="modal">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+
+</html>
