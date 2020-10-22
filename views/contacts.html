@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" sizes="32x32" href="./assets/logo.svg" type="image/svg+xml">
+    <link rel="icon" sizes="32x32" href="../assets/logo.svg" type="image/svg+xml">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/styles.css">
@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-0">
         <a class="navbar-brand" href="#">
-            <img class="ml-4" src="./assets/logo.svg" width="50" height="50" alt="" loading="lazy">
+            <img class="ml-4" src="../assets/logo.svg" width="50" height="50" alt="" loading="lazy">
         </a>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div class="navbar-nav">
@@ -183,7 +183,7 @@
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
                 <div class="modal-body text-center mt-1">
-                    <img src="./assets/import.png" alt="Import logo">
+                    <img src="../assets/import.png" alt="Import logo">
                     <p class="pt-4">Selecciona el archivo de tu ordenador para importar tus contactos.</p>
                 </div>
                 <div class="modal-footer border-top-0 justify-content-around">
@@ -199,7 +199,7 @@
         <div class="modal-dialog modal-dialog-centered modal-sm">
             <div class="modal-content">
                 <div class="modal-body text-center mt-1">
-                    <img src="./assets/delete.png" alt="Delete logo">
+                    <img src="../assets/delete.png" alt="Delete logo">
                     <p class="pt-4">¿Seguro que deseas eliminar los contactos seleccionados?</p>
                 </div>
                 <div class="modal-footer border-top-0 justify-content-around">
@@ -221,7 +221,7 @@
                     <form>
                         <div class="form-group form-row border py-4 px-2 borders-new-user-modal bg-white">
                             <div class="col- position-relative ml-2 mr-3">
-                                <img src="./assets/avatar.png" alt="user pic" class="new-user-img rounded-circle border border-primary borders-new-user-modal bg-secondary">
+                                <img src="../assets/avatar.png" alt="user pic" class="new-user-img rounded-circle border border-primary borders-new-user-modal bg-secondary">
                                 <button type="button" class="btn btn-primary rounded-circle camera-button p-0 border-white position-absolute"><i class="fa fa-camera" aria-hidden="true"></i></button>
                             </div>
                             <div class="col">
@@ -291,7 +291,7 @@
                             </div>
                             <div class="col-xs">
                                 <label for="interest-select" class="col-form-label col-form-label-sm text-white">Interés</label>
-                                <select class="form-control form-control-sm interest-select" name="interest-value" id="interest-select">
+                                <select class="form-control form-control-sm interest-select" name="interest" id="interest-select">
                                     <option selected value="0">0%</option>
                                     <option value="25">25%</option>
                                     <option value="50">50%</option>
@@ -305,10 +305,12 @@
                                 <label for="contact-channel" class="col-form-label col-form-label-sm">Canal de contacto</label>
                                 <select class="form-control form-control-sm" name="contact-channel" id="contact-channel">
                                     <option selected>Seleccionar canal</option>
+                                    <option value="email">Teléfono</option>
                                     <option value="email">Email</option>
                                     <option value="facebook">Facebook</option>
                                     <option value="instagram">Instagram</option>
-                                    <option value="whatsapp">Whatsapp</option> 
+                                    <option value="whatsapp">Whatsapp</option>
+                                    <option value="whatsapp">Linkedin</option>  
                                 </select>
                             </div>
                             <div class="col">

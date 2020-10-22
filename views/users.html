@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" sizes="32x32" href="./assets/logo.svg" type="image/svg+xml">
+    <link rel="icon" sizes="32x32" href="../assets/logo.svg" type="image/svg+xml">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="../styles/styles.css">
@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary py-0">
         <a class="navbar-brand" href="#">
-            <img class="ml-4" src="./assets/logo.svg" width="50" height="50" alt="" loading="lazy">
+            <img class="ml-4" src="../assets/logo.svg" width="50" height="50" alt="" loading="lazy">
         </a>
         <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
             <div class="navbar-nav">
@@ -66,31 +66,31 @@
                     <form class="col">
                         <div class="form-group">
                             <label for="name">Nombre</label>
-                            <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                            <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
                             <label for="lastname">Apellido</label>
-                            <input type="text" class="form-control" id="lastname" aria-describedby="emailHelp">
+                            <input type="text" class="form-control" id="lastname" name="lastname" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+                            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
                         </div>
                         <div class="form-group">
                             <label for="profile">Perfil</label>
-                            <select class="form-control" name="profile" id="profile">
+                            <select class="form-control" name="isAdmin" id="profile">
                                 <option selected>Seleccionar perfil de usuario</option>
-                                <option value="admin">Administrador</option>
-                                <option value="user">Usuario</option> 
+                                <option value="true">Administrador</option>
+                                <option value="false">Usuario</option> 
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="password">Contraseña</label>
-                            <input type="password" class="form-control" id="password">
+                            <input type="password" class="form-control" id="password" name="password">
                         </div>
                         <div class="form-group">
                             <label for="repeat-password">Repetir contraseña</label>
-                            <input type="password" class="form-control" id="repeat-password">
+                            <input type="password" class="form-control" id="repeat-password" name="repeatPassword">
                         </div>
                     </form>
                 </div>
