@@ -11,6 +11,20 @@ const registerSchema = {
     }
 }
 
+const companySchema = {
+    type: 'object',
+    required: ['name', 'address', 'telephone', 'email', 'city'],
+    properties: {
+        name: { type: 'string' },
+        address: { type: 'string' },
+        telephone: { type: 'string' },
+        email: { type: 'string', pattern: "^[A-Za-z0-9._-]*@[a-z]*.com$" },
+        city: { tipe: 'string' }
+    }
+}
+
+
+
 const productSchema = {
     type: 'object',
     required: ['img', 'name', 'price'],
@@ -43,7 +57,5 @@ const orderStatusSchema = {
 
 module.exports = {
     registerSchema,
-    productSchema,
-    orderSchema,
-    orderStatusSchema
+    companySchema
 }

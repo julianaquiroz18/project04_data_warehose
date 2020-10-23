@@ -77,7 +77,7 @@ async function checkUserID(req, res, next) {
 
 
 /**
- * Check if username and email already exist to update user Information
+ * Check if user already exist to update user Information
  */
 async function checkUserToUpdate(req, res, next) {
     const currentInfo = await User.findById(req.params.userID).exec();
@@ -85,7 +85,6 @@ async function checkUserToUpdate(req, res, next) {
     const newEmail = req.body.email;
 
     if (newEmail === currentEmail) {
-        console.log("son iguales")
         return next();
     }
 

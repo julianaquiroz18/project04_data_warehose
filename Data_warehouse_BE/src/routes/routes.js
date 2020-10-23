@@ -10,6 +10,7 @@ const { Contact, ContactChannel } = require('../models/contacts');
  */
 const { login } = require('../middlewares/authentication');
 const { getUserInfo, checkIfAdmin, checkPassword, checkUser, checkUserID, checkUserToUpdate } = require('../middlewares/users');
+const { checkCompany, checkCompanyID, checkCompanyToUpdate } = require('../middlewares/companies');
 const { jwtGenerator, jwtExtract, verifyToken } = require('../middlewares/jwt');
 
 
@@ -17,7 +18,7 @@ const { jwtGenerator, jwtExtract, verifyToken } = require('../middlewares/jwt');
 /**
  * Schema validator
  */
-const { registerSchema } = require('../schemas/schemas');
+const { registerSchema, companySchema } = require('../schemas/schemas');
 const { Validator } = require('express-json-validator-middleware');
 const validator = new Validator({ allErrors: true });
 const validate = validator.validate;
@@ -78,7 +79,7 @@ router.put("/users/:userID", jwtExtract, verifyToken, checkIfAdmin, checkUserID,
 /**
  * Get companies list 
  */
-router.get("/companies", async(req, res) => {
+router.get("/companies", jwtExtract, verifyToken, async(req, res) => {
     const companiesList = await Company.find();
     res.status(200).json(companiesList);
 });
@@ -86,7 +87,7 @@ router.get("/companies", async(req, res) => {
 /**
  * Companies registration 
  */
-router.post("/companies", async(req, res) => {
+router.post("/companies", jwtExtract, verifyToken, validate({ body: companySchema }), checkCompany, async(req, res) => {
     const newCompany = new Company(req.body);
     await newCompany.save();
     res.status(201).json(newCompany);
@@ -95,7 +96,7 @@ router.post("/companies", async(req, res) => {
 /**
  * Delete companies 
  */
-router.delete("/companies/:companyID", async(req, res) => {
+router.delete("/companies/:companyID", jwtExtract, verifyToken, checkCompanyID, async(req, res) => {
     await Company.deleteOne({ _id: req.params.companyID })
     res.status(200).send("Company was deleted");
 });
@@ -103,7 +104,7 @@ router.delete("/companies/:companyID", async(req, res) => {
 /**
  * Update companies
  */
-router.put("/companies/:companyID", async(req, res) => {
+router.put("/companies/:companyID", jwtExtract, verifyToken, checkCompanyID, validate({ body: companySchema }), checkCompanyToUpdate, async(req, res) => {
     await Company.updateOne({ _id: req.params.companyID }, req.body);
     res.status(200).send("Company information was updated");
 });
