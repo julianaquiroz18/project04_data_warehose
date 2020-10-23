@@ -9,7 +9,7 @@ const errorHandler = ((err, req, res, next) => {
     if (err instanceof ValidationError) {
         res.status(400).send({
             code: 400,
-            error: 'Invalid input'
+            error: 'Invalid input, missing information required'
         });
         next();
     } else {

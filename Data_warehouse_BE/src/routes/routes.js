@@ -11,6 +11,7 @@ const { Contact, ContactChannel } = require('../models/contacts');
 const { login } = require('../middlewares/authentication');
 const { getUserInfo, checkIfAdmin, checkPassword, checkUser, checkUserID, checkUserToUpdate } = require('../middlewares/users');
 const { checkCompany, checkCompanyID, checkCompanyToUpdate } = require('../middlewares/companies');
+const { checkContact, checkContactID, checkContactToUpdate } = require('../middlewares/contacts');
 const { jwtGenerator, jwtExtract, verifyToken } = require('../middlewares/jwt');
 
 
@@ -18,7 +19,7 @@ const { jwtGenerator, jwtExtract, verifyToken } = require('../middlewares/jwt');
 /**
  * Schema validator
  */
-const { registerSchema, companySchema } = require('../schemas/schemas');
+const { registerSchema, companySchema, contactSchema } = require('../schemas/schemas');
 const { Validator } = require('express-json-validator-middleware');
 const validator = new Validator({ allErrors: true });
 const validate = validator.validate;
@@ -114,7 +115,7 @@ router.put("/companies/:companyID", jwtExtract, verifyToken, checkCompanyID, val
 /**
  * Get contacts list 
  */
-router.get("/contacts", async(req, res) => {
+router.get("/contacts", jwtExtract, verifyToken, async(req, res) => {
     const contactsList = await Contact.find();
     res.status(200).json(contactsList);
 });
@@ -122,7 +123,7 @@ router.get("/contacts", async(req, res) => {
 /**
  * Contacts registration 
  */
-router.post("/contacts", async(req, res) => {
+router.post("/contacts", jwtExtract, verifyToken, validate({ body: contactSchema }), checkContact, async(req, res) => {
     const newContact = new Contact(req.body);
     await newContact.save();
     res.status(201).json(newContact);
@@ -131,7 +132,7 @@ router.post("/contacts", async(req, res) => {
 /**
  * Delete contacts 
  */
-router.delete("/contacts/:contactID", async(req, res) => {
+router.delete("/contacts/:contactID", jwtExtract, verifyToken, checkContactID, async(req, res) => {
     await Contact.deleteOne({ _id: req.params.contactID })
     res.status(200).send("Contact was deleted");
 });
@@ -139,7 +140,7 @@ router.delete("/contacts/:contactID", async(req, res) => {
 /**
  * Update contacts
  */
-router.put("/contacts/:contactID", async(req, res) => {
+router.put("/contacts/:contactID", jwtExtract, verifyToken, checkContactID, validate({ body: contactSchema }), checkContactToUpdate, async(req, res) => {
     await Contact.updateOne({ _id: req.params.contactID }, req.body);
     res.status(200).send("Contact information was updated");
 });

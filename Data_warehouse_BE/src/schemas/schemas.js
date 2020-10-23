@@ -23,7 +23,23 @@ const companySchema = {
     }
 }
 
-
+const contactSchema = {
+    type: 'object',
+    required: ['name', 'lastname', 'position', 'email', 'company'],
+    properties: {
+        name: { type: 'string' },
+        lastname: { type: 'string' },
+        position: { type: 'string' },
+        email: { type: 'string', pattern: "^[A-Za-z0-9._-]*@[a-z]*.com$" },
+        company: { tipe: 'string' },
+        region: { type: 'string' },
+        country: { type: 'string' },
+        city: { type: 'string' },
+        address: { type: 'string' },
+        interest: { type: 'integer' },
+        contactChannel: { type: 'array' }
+    }
+}
 
 const productSchema = {
     type: 'object',
@@ -57,5 +73,6 @@ const orderStatusSchema = {
 
 module.exports = {
     registerSchema,
-    companySchema
+    companySchema,
+    contactSchema
 }
