@@ -12,6 +12,7 @@ const { login } = require('../middlewares/authentication');
 const { getUserInfo, checkIfAdmin, checkPassword, checkUser, checkUserID, checkUserToUpdate } = require('../middlewares/users');
 const { checkCompany, checkCompanyID, checkCompanyToUpdate } = require('../middlewares/companies');
 const { checkContact, checkContactID, checkContactToUpdate } = require('../middlewares/contacts');
+const { checkRegionID, checkRegion, checkRegionToUpdate, checkCountryID, checkCountry, checkCountryToUpdate, checkCityID, checkCity, checkCityToUpdate } = require('../middlewares/cities');
 const { jwtGenerator, jwtExtract, verifyToken } = require('../middlewares/jwt');
 
 
@@ -19,7 +20,7 @@ const { jwtGenerator, jwtExtract, verifyToken } = require('../middlewares/jwt');
 /**
  * Schema validator
  */
-const { registerSchema, companySchema, contactSchema } = require('../schemas/schemas');
+const { registerSchema, companySchema, contactSchema, regionSchema, countrySchema, citySchema } = require('../schemas/schemas');
 const { Validator } = require('express-json-validator-middleware');
 const validator = new Validator({ allErrors: true });
 const validate = validator.validate;
@@ -145,18 +146,20 @@ router.put("/contacts/:contactID", jwtExtract, verifyToken, checkContactID, vali
     res.status(200).send("Contact information was updated");
 });
 
+
+
 //City-Country-Regions CRUD
 
 /**
  * Create
  */
-router.post("/regions", async(req, res) => {
+router.post("/regions", jwtExtract, verifyToken, validate({ body: regionSchema }), checkRegion, async(req, res) => {
     const newRegion = new Region(req.body);
     await newRegion.save();
     res.status(201).json(newRegion);
 });
 
-router.post("/countries", async(req, res) => {
+router.post("/countries", jwtExtract, verifyToken, validate({ body: countrySchema }), checkCountry, async(req, res) => {
     const region = await Region.findById(req.body.regionID).exec();
     const newCountry = new Country(req.body);
     await newCountry.save();
@@ -166,7 +169,7 @@ router.post("/countries", async(req, res) => {
     //res.status(201).send(region);
 });
 
-router.post("/cities", async(req, res) => {
+router.post("/cities", jwtExtract, verifyToken, validate({ body: citySchema }), checkCity, async(req, res) => {
     const country = await Country.findById(req.body.countryID).exec();
     const newCity = new City(req.body);
     await newCity.save();
@@ -179,7 +182,7 @@ router.post("/cities", async(req, res) => {
 /**
  * Get
  */
-router.get("/regions", async(req, res) => {
+router.get("/regions", jwtExtract, verifyToken, async(req, res) => {
     const regionsList = await Region.find({}, ['name']).populate({ path: 'countries', select: ['name'], populate: { path: 'cities', select: ['name'] } }).exec();
     // const x = regionsList.map(region => ({
     //     _id: region._id,
@@ -189,30 +192,30 @@ router.get("/regions", async(req, res) => {
     res.status(200).json(regionsList);
 });
 
-router.get("/countries", async(req, res) => {
+router.get("/countries", jwtExtract, verifyToken, async(req, res) => {
     const countriesList = await Country.find({}, ['name']).populate('cities', ['name']).exec();
     res.status(200).json(countriesList);
 });
 
-router.get("/cities", async(req, res) => {
+router.get("/cities", jwtExtract, verifyToken, async(req, res) => {
     const citiesList = await City.find({}, ['name']);
     res.status(200).json(citiesList);
 });
 
 /**
- * Create
+ * Delete
  */
-router.delete("/regions/:regionID", async(req, res) => {
+router.delete("/regions/:regionID", jwtExtract, verifyToken, checkRegionID, async(req, res) => {
     await Region.deleteOne({ _id: req.params.regionID })
     res.status(200).send("Region was deleted");
 });
 
-router.delete("/countries/:countryID", async(req, res) => {
+router.delete("/countries/:countryID", jwtExtract, verifyToken, checkCountryID, async(req, res) => {
     await Country.deleteOne({ _id: req.params.countryID })
     res.status(200).send("Country was deleted");
 });
 
-router.delete("/cities/:cityID", async(req, res) => {
+router.delete("/cities/:cityID", jwtExtract, verifyToken, checkCityID, async(req, res) => {
     await City.deleteOne({ _id: req.params.cityID })
     res.status(200).send("City was deleted");
 });

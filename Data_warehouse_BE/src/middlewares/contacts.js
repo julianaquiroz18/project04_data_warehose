@@ -32,7 +32,7 @@ async function checkContactID(req, res, next) {
 
 
 /**
- * Check if contact already exist to update user Information
+ * Check if contact already exist to update contact Information
  */
 async function checkContactToUpdate(req, res, next) {
     const currentInfo = await Contact.findById(req.params.contactID).exec();

@@ -32,7 +32,7 @@ async function checkCompanyID(req, res, next) {
 
 
 /**
- * Check if company already exist to update user Information
+ * Check if company already exist to update company Information
  */
 async function checkCompanyToUpdate(req, res, next) {
     const currentInfo = await Company.findById(req.params.companyID).exec();

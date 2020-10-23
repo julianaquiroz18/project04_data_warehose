@@ -41,38 +41,40 @@ const contactSchema = {
     }
 }
 
-const productSchema = {
+const regionSchema = {
     type: 'object',
-    required: ['img', 'name', 'price'],
+    required: ['name'],
     properties: {
-        img: { type: 'string' },
         name: { type: 'string' },
-        price: { type: 'integer' }
+        countries: { type: 'array' }
     }
 }
 
-
-const orderSchema = {
+const countrySchema = {
     type: 'object',
-    required: ['products', 'paymentMethod'],
+    required: ['regionID', 'name'],
     properties: {
-        products: { type: 'array' },
-        paymentMethod: { type: 'string' }
+        regionID: { type: 'string' },
+        name: { type: 'string' },
+        cities: { type: 'array' }
     }
 }
 
-const orderStatusSchema = {
+const citySchema = {
     type: 'object',
-    required: ['status'],
+    required: ['countryID', 'name'],
     properties: {
-        status: { type: 'string' }
+        countryID: { type: 'string' },
+        name: { type: 'string' }
     }
 }
-
 
 
 module.exports = {
     registerSchema,
     companySchema,
-    contactSchema
+    contactSchema,
+    regionSchema,
+    countrySchema,
+    citySchema
 }
