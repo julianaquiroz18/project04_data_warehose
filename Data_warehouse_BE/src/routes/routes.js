@@ -223,18 +223,18 @@ router.delete("/cities/:cityID", jwtExtract, verifyToken, checkCityID, async(req
 /**
  * Update
  */
-router.put("/regions/:regionID", async(req, res) => {
+router.put("/regions/:regionID", jwtExtract, verifyToken, checkRegionID, validate({ body: regionSchema }), checkRegionToUpdate, async(req, res) => {
     await Region.updateOne({ _id: req.params.regionID }, req.body);
     res.status(200).send("Region information was updated");
 });
 
-router.put("/countries/:countryID", async(req, res) => {
-    await Region.updateOne({ _id: req.params.countryID }, req.body);
+router.put("/countries/:countryID", jwtExtract, verifyToken, checkCountryID, validate({ body: countrySchema }), checkCountryToUpdate, async(req, res) => {
+    await Country.updateOne({ _id: req.params.countryID }, req.body);
     res.status(200).send("Country information was updated");
 });
 
-router.put("/cities/:cityID", async(req, res) => {
-    await Region.updateOne({ _id: req.params.cityID }, req.body);
+router.put("/cities/:cityID", jwtExtract, verifyToken, checkCityID, validate({ body: citySchema }), checkCityToUpdate, async(req, res) => {
+    await City.updateOne({ _id: req.params.cityID }, req.body);
     res.status(200).send("City information was updated");
 });
 
