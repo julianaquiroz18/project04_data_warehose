@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const { Region, Country, City } = require('../models/cities');
 
 const ContactSchema = new Schema({
     name: {
@@ -23,13 +24,16 @@ const ContactSchema = new Schema({
         required: true
     },
     region: {
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: 'Region'
     },
     country: {
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: 'Country'
     },
     city: {
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: 'City'
     },
     address: {
         type: String
@@ -37,28 +41,13 @@ const ContactSchema = new Schema({
     interest: {
         type: Number
     },
-    contactChannel: [{ type: Schema.Types.ObjectId, ref: 'ContactChannel' }]
+    contactChannel: {
+        type: Array
+    }
 }, { versionKey: false })
 
-const ContactChannelSchema = new Schema({
-    contactChannel: {
-        type: String,
-        required: true
-    },
-    userAcount: {
-        type: String,
-        required: true
-    },
-    preferences: {
-        type: String,
-        required: true
-    }
-}, { versionKey: false });
-
 const Contact = mongoose.model('contacts', ContactSchema);
-const ContactChannel = mongoose.model('contactChannels', ContactChannelSchema)
 
 module.exports = {
-    Contact,
-    ContactChannel
+    Contact
 }

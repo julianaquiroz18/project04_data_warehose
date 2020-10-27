@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const { City } = require('../models/cities');
 
 const Company = new Schema({
     name: {
@@ -19,7 +20,8 @@ const Company = new Schema({
         required: true
     },
     city: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'City',
         required: true
     }
 }, { versionKey: false })

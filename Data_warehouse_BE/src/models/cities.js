@@ -10,7 +10,7 @@ const RegionSchema = new Schema({
 }, { versionKey: false });
 
 const CountrySchema = new Schema({
-    regionID: {
+    region: {
         type: Schema.Types.ObjectId,
         ref: 'Region',
         required: true
@@ -23,7 +23,7 @@ const CountrySchema = new Schema({
 }, { versionKey: false });
 
 const CitySchema = new Schema({
-    countryID: {
+    country: {
         type: Schema.Types.ObjectId,
         ref: 'Country',
         required: true

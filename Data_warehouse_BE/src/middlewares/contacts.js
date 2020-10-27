@@ -44,10 +44,36 @@ async function checkContactToUpdate(req, res, next) {
     }
 
     checkContact(req, res, next);
-}
+};
+
+/**
+ * Get filtered field info
+ */
+function getFilterFields(req, res, next) {
+    req.filterFields = {
+        name: { $regex: '.*' + req.body.name + '.*', $options: 'i' },
+        position: { $regex: '.*' + req.body.position + '.*', $options: 'i' },
+        country: req.body.country || { $ne: null },
+        company: req.body.company || { $ne: null },
+        contactChannel: { "$elemMatch": { contactChannel: `${req.body.favoriteChannel}`, preferences: "favorite" } },
+        interest: req.body.interest || { $ne: null }
+    };
+    if (!req.body.name) {
+        req.filterFields.name = { $ne: null };
+    }
+    if (!req.body.position) {
+        req.filterFields.position = { $ne: null };
+    }
+    if (!req.body.favoriteChannel) {
+        req.filterFields.contactChannel = { $ne: null };
+    }
+
+    next();
+};
 
 module.exports = {
     checkContactID,
     checkContact,
-    checkContactToUpdate
+    checkContactToUpdate,
+    getFilterFields
 }

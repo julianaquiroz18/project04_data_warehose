@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('../models/users');
 const Company = require('../models/companies');
 const { Region, Country, City } = require('../models/cities');
-const { Contact, ContactChannel } = require('../models/contacts');
+const { Contact } = require('../models/contacts');
 
 /**
  * Middlewares
@@ -11,7 +11,7 @@ const { Contact, ContactChannel } = require('../models/contacts');
 const { login } = require('../middlewares/authentication');
 const { getUserInfo, checkIfAdmin, checkPassword, checkUser, checkUserID, checkUserToUpdate } = require('../middlewares/users');
 const { checkCompany, checkCompanyID, checkCompanyToUpdate } = require('../middlewares/companies');
-const { checkContact, checkContactID, checkContactToUpdate } = require('../middlewares/contacts');
+const { checkContact, checkContactID, checkContactToUpdate, getFilterFields } = require('../middlewares/contacts');
 const { checkRegionID, checkRegion, checkRegionToUpdate, checkCountryID, checkCountry, checkCountryToUpdate, checkCityID, checkCity, checkCityToUpdate } = require('../middlewares/cities');
 const { jwtGenerator, jwtExtract, verifyToken } = require('../middlewares/jwt');
 
@@ -82,7 +82,8 @@ router.put("/users/:userID", jwtExtract, verifyToken, checkIfAdmin, checkUserID,
  * Get companies list 
  */
 router.get("/companies", jwtExtract, verifyToken, async(req, res) => {
-    const companiesList = await Company.find();
+    const companiesList = await Company.find().populate({ path: "city", select: ['name'], populate: { path: "country", select: ['name'], populate: { path: "region", select: ['name'] } } }).exec();
+    //const companiesList = await Company.find().populate("city", ['name']).exec();
     res.status(200).json(companiesList);
 });
 
@@ -118,6 +119,14 @@ router.put("/companies/:companyID", jwtExtract, verifyToken, checkCompanyID, val
  */
 router.get("/contacts", jwtExtract, verifyToken, async(req, res) => {
     const contactsList = await Contact.find();
+    res.status(200).json(contactsList);
+});
+
+/**
+ * Get contacts filtered
+ */
+router.get("/contacts/filter", jwtExtract, verifyToken, getFilterFields, async(req, res) => {
+    const contactsList = await Contact.find(req.filterFields).exec();
     res.status(200).json(contactsList);
 });
 
