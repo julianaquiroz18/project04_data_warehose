@@ -42,18 +42,8 @@
                     <th class="align-middle" scope="col">Acciones</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td class="align-middle pl-5">Jovot</td>
-                    <td class="align-middle">Cr 76a n53-210</td>
-                    <td class="align-middle pl-5">jovot@hotmail.com</td>
-                    <td class="align-middle">3214578</td>
-                    <td class="align-middle">Medellin</td>
-                    <td class="align-middle">
-                        <button type="button" class="btn btn-lg text-black-50 ml-n3"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                        <button type="button" class="btn btn-lg text-black-50"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                    </td>
-                </tr>
+            <tbody class="companies-body-table">
+
             </tbody>
         </table>
     </main>
@@ -65,7 +55,7 @@
                     <button type="button" class="close text-primary" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form class="col">
+                    <form class="col" id="new-company-form">
                         <div class="form-group">
                             <label for="name">Nombre</label>
                             <input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp">
@@ -85,16 +75,15 @@
                         <div class="form-group">
                             <label for="city">Ciudad</label>
                             <select class="form-control" name="city" id="city">
-                                <option selected>Seleccionar ciudad</option>
-                                <option value="medellin">Medellin</option>
-                                <option value="bogota">Bogotá</option> 
+                                <option value= "null" selected>Seleccionar ciudad</option>
                             </select>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer border-top-0">
                     <button type="button" class="btn btn-outline-primary modal-button" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary modal-button" data-dismiss="modal">Crear</button>
+                    <button type="submit" class="btn btn-primary modal-button create" data-dismiss="modal">Crear</button>
+
                 </div>
             </div>
         </div>
@@ -102,6 +91,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script type="module" src="../scripts/companies/getCompanies.js"></script>
+    <script type="module" src="../scripts/companies/createCompany.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const { Region, Country, City } = require('../models/cities');
+const Company = require('../models/companies');
 
 const ContactSchema = new Schema({
     name: {
@@ -20,16 +21,9 @@ const ContactSchema = new Schema({
         required: true
     },
     company: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'companies',
         required: true
-    },
-    region: {
-        type: Schema.Types.ObjectId,
-        ref: 'Region'
-    },
-    country: {
-        type: Schema.Types.ObjectId,
-        ref: 'Country'
     },
     city: {
         type: Schema.Types.ObjectId,

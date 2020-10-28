@@ -9,8 +9,8 @@ const { SERVER_PORT } = require('./config');
 
 async function main() {
     const server = express();
-    server.use(express.json());
     server.use(cors()); //Enable CORS Origin *
+    server.use(express.json());
     server.use(express.urlencoded({ extended: false }));
     server.use(helmet());
     server.use('/data_wharehose/v1', router);

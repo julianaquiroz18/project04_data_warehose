@@ -30,7 +30,7 @@ const validate = validator.validate;
 /**
  * Login
  */
-router.get("/users/login", login, jwtGenerator, (req, res) => {
+router.post("/users/login", login, jwtGenerator, (req, res) => {
     res.status(200).json({
         message: "Successful login",
         token: req.token
@@ -118,7 +118,7 @@ router.put("/companies/:companyID", jwtExtract, verifyToken, checkCompanyID, val
  * Get contacts list 
  */
 router.get("/contacts", jwtExtract, verifyToken, async(req, res) => {
-    const contactsList = await Contact.find();
+    const contactsList = await Contact.find().populate("company", ['name']).populate({ path: "city", select: ['name'], populate: { path: "country", select: ['name'], populate: { path: "region", select: ['name'] } } }).exec();
     res.status(200).json(contactsList);
 });
 

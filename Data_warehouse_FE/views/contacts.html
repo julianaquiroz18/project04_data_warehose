@@ -39,7 +39,7 @@
                                 <div class="form-group mt-1 pb-2 row">
                                     <label for="name" class="col-md-4 col-form-label col-form-label-sm">Nombre del contacto</label>
                                     <div class="col-md-8">
-                                        <input type="text" class="form-control form-control-plaintext form-control-sm border-bottom" id="name" name="name" placeholder="Introduce el nombre del contacto">
+                                        <input type="text" class="form-control form-control-plaintext form-control-sm border-bottom" id="name-filter" name="name" placeholder="Introduce el nombre del contacto">
                                     </div>
                                 </div>
                                 <div class="form-group py-2 row">
@@ -140,40 +140,8 @@
                         <th class="align-middle text-center" scope="col">Acciones</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td class="align-middle"><input class="ml-3" type="checkbox" name="user-info"></td>
-                        <td class="align-middle">
-                            <div class="d-flex flex-row align-items-center">
-                                <img src="https://i.picsum.photos/id/1027/2848/4272.jpg?hmac=EAR-f6uEqI1iZJjB6-NzoZTnmaX0oI0th3z8Y78UpKM" alt="user pic" class="user-img rounded-circle">
-                                <div class="ml-2">
-                                    <p>Camila Soledad Panto</p>
-                                    <p class="email-table text-black-50">camilapanto123@gmail.com</p>
-                                </div>
-                            </div>
+                <tbody class="contacts-body-table">
 
-                        </td>
-                        <td class="align-middle">
-                            <p>Argentina</p>
-                            <p class="region-table text-black-50">Latam</p>
-                        </td>
-                        <td class="align-middle">Ecom Experts</td>
-                        <td class="align-middle">UX Designer</td>
-                        <td class="align-middle"><button type="button" class="btn btn-xsm btn-tag">Whatsapp</button></td>
-                        <td class="align-middle">
-                            <div class="div-interest d-inline-flex align-items-center">
-                                <p class="interest-percentage">100%</p>
-                                <div class="progress ml-3">
-                                    <div class="progress-bar w-100 bg-danger" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="align-middle text-center">
-                            <button type="button" class="btn text-black-50"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-lg text-black-50 d-none"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            <button type="button" class="btn btn-lg text-black-50 d-none"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </section>
@@ -242,7 +210,9 @@
                             </div>
                             <div class="col">
                                 <label for="company" class="col-form-label col-form-label-sm">Compañía<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control form-control-sm" id="company" name="company" placeholder="Ingresar el nombre de la compañía">
+                                <select type="text" class="form-control form-control-sm" id="company" name="company">
+                                    <option selected>Seleccionar compañía</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group form-row">
@@ -250,10 +220,6 @@
                                 <label for="region" class="col-form-label col-form-label-sm">Region</label>
                                 <select class="form-control form-control-sm" name="region" id="region">
                                     <option selected>Seleccionar región</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option> 
                                 </select>
                             </div>
                             <div class="col">
@@ -361,7 +327,7 @@
                 </div>
                 <div class="modal-footer border-top-0">
                     <button type="button" class="btn btn-outline-primary btn-lg modal-button border-0" data-dismiss="modal" disabled>Cancelar</button>
-                    <button type="button" class="btn btn-success btn-lg modal-button" disabled>Guardar contacto</button>
+                    <button type="button" class="btn btn-success btn-lg modal-button create" disabled>Guardar contacto</button>
                 </div>
             </div>
         </div>
@@ -369,7 +335,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <script src="../scripts/contacts.js"></script>
+    <script src="../scripts/contactsFilter.js"></script>
+    <script type="module" src="../scripts/contacts/getContacts.js"></script>
+    <script type="module" src="../scripts/contacts/createContacts.js"></script>
 </body>
 
 </html>

@@ -32,8 +32,6 @@ const contactSchema = {
         position: { type: 'string' },
         email: { type: 'string', pattern: "^[A-Za-z0-9._-]*@[a-z]*.com$" },
         company: { tipe: 'string' },
-        region: { type: 'string' },
-        country: { type: 'string' },
         city: { type: 'string' },
         address: { type: 'string' },
         interest: { type: 'integer' },
