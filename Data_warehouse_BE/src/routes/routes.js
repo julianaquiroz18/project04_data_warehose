@@ -212,6 +212,22 @@ router.get("/cities", jwtExtract, verifyToken, async(req, res) => {
 });
 
 /**
+ * Get countries from a specific region
+ */
+router.get("/countries/:regionID", jwtExtract, verifyToken, async(req, res) => {
+    const countriesList = await Region.findById(req.params.regionID, ['name']).populate('countries', ['name']).exec();
+    res.status(200).json(countriesList);
+});
+
+/**
+ * Get cities from a specific country
+ */
+router.get("/cities/:countryID", jwtExtract, verifyToken, async(req, res) => {
+    const citiesList = await Country.findById(req.params.countryID, ['name']).populate('cities', ['name']).exec();
+    res.status(200).json(citiesList);
+});
+
+/**
  * Delete
  */
 router.delete("/regions/:regionID", jwtExtract, verifyToken, checkRegionID, async(req, res) => {

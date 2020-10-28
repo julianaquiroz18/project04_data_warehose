@@ -135,7 +135,6 @@
                         <th class="align-middle" scope="col">País/Región <i class="fa fa-sort" aria-hidden="true"></i></th>
                         <th class="align-middle" scope="col">Compañía <i class="fa fa-sort" aria-hidden="true"></i></th>
                         <th class="align-middle" scope="col">Cargo <i class="fa fa-sort" aria-hidden="true"></i></th>
-                        <th class="align-middle" scope="col">Canal preferido</th>
                         <th class="align-middle" scope="col">Interés <i class="fa fa-sort" aria-hidden="true"></i></th>
                         <th class="align-middle text-center" scope="col">Acciones</th>
                     </tr>
@@ -186,7 +185,7 @@
                     <button type="button" class="close text-white" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="new-contact-form">
                         <div class="form-group form-row border py-4 px-2 borders-new-user-modal bg-white">
                             <div class="col- position-relative ml-2 mr-3">
                                 <img src="../assets/avatar.png" alt="user pic" class="new-user-img rounded-circle border border-primary borders-new-user-modal bg-secondary">
@@ -220,26 +219,21 @@
                                 <label for="region" class="col-form-label col-form-label-sm">Region</label>
                                 <select class="form-control form-control-sm" name="region" id="region">
                                     <option selected>Seleccionar región</option>
+                                
                                 </select>
                             </div>
                             <div class="col">
                                 <label for="country" class="col-form-label col-form-label-sm">País</label>
                                 <select class="form-control form-control-sm" name="country" id="country" disabled>
                                     <option selected>Seleccionar país</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option> 
+                                
                                 </select>
                             </div>
                             <div class="col">
                                 <label for="city" class="col-form-label col-form-label-sm">Ciudad</label>
                                 <select class="form-control form-control-sm" name="city" id="city" disabled>
                                     <option selected>Seleccionar ciudad</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option> 
+                                     
                                 </select>
                             </div>
                             <div class="col">
@@ -269,65 +263,104 @@
                         <div class="form-group form-row contact-channel-info">
                             <div class="col">
                                 <label for="contact-channel" class="col-form-label col-form-label-sm">Canal de contacto</label>
-                                <select class="form-control form-control-sm" name="contactChannel" id="contact-channel">
+                                <select class="form-control form-control-sm" name="contactChannel" id="contact-channel-1">
                                     <option selected>Seleccionar canal</option>
                                     <option value="tel">Teléfono</option>
                                     <option value="email">Email</option>
-                                    <option value="facebook">Facebook</option>
-                                    <option value="instagram">Instagram</option>
-                                    <option value="whatsapp">Whatsapp</option>
-                                    <option value="whatsapp">Linkedin</option>  
-                                </select>
-                            </div>
-                            <div class="col">
-                                <label for="userAcount" class="col-form-label col-form-label-sm">Cuenta de usuario</label>
-                                <input type="text" class="form-control form-control-sm" id="userAcount" name="userAcount" placeholder="@ejemplo" disabled>
-                            </div>
-                            <div class="col">
-                                <label for="preferences" class="col-form-label col-form-label-sm">Preferencias</label>
-                                <select class="form-control form-control-sm" name="preferences" id="preferences" disabled>
-                                    <option value="no preference" selected>Sin preferencia</option>
-                                    <option value="favorite">Canal favorito</option>
-                                    <option value="do not disturb">No molestar</option> 
-                                </select>
-                            </div>
-                            <div class="col d-flex align-items-end">
-                                <button type="button" class="btn btn-primary form-control form-control-sm btn-sm add-channel" disabled><i class="fa fa-plus" aria-hidden="true"></i> Agregar canal</button>
-                            </div>
-                        </div>
-                        <div class="form-group form-row contact-channel-info">
-                            <div class="col">
-                                <label for="contact-channel" class="col-form-label col-form-label-sm">Canal de contacto</label>
-                                <select class="form-control form-control-sm" name="contactChannel" id="contact-channel">
-                                    <option selected>Seleccionar canal</option>
-                                    <option value="email">Email</option>
-                                    <option value="facebook">Facebook</option>
-                                    <option value="instagram">Instagram</option>
                                     <option value="whatsapp">Whatsapp</option> 
+                                    <option value="linkedin">Linkedin</option>
                                 </select>
                             </div>
                             <div class="col">
                                 <label for="userAcount" class="col-form-label col-form-label-sm">Cuenta de usuario</label>
-                                <input type="text" class="form-control form-control-sm" id="userAcount" name="userAcount" placeholder="@ejemplo">
+                                <input type="text" class="form-control form-control-sm" id="userAcount-1" name="userAcount" placeholder="@ejemplo">
                             </div>
                             <div class="col">
                                 <label for="preferences" class="col-form-label col-form-label-sm">Preferencias</label>
-                                <select class="form-control form-control-sm" name="preferences" id="preferences">
+                                <select class="form-control form-control-sm" name="preferences" id="preferences-1">
                                     <option selected>Sin preferencia</option>
                                     <option value="favorite">Canal favorito</option>
                                     <option value="do not disturb">No molestar</option> 
                                 </select>
                             </div>
-                            <div class="col d-flex align-items-end flex-nowrap">
-                                <button type="button" class="btn btn-outline-primary form-control form-control-sm btn-sm add-channel mr-2"><i class="fa fa-pencil" aria-hidden="true"></i> Editar canal</button>
-                                <button type="button" class="btn btn-outline-secondary form-control form-control-sm btn-sm add-channel"><i class="fa fa-trash" aria-hidden="true"></i>  Eliminar canal</button>
+                        </div>
+                        <div class="form-group form-row contact-channel-info">
+                            <div class="col">
+                                <label for="contact-channel" class="col-form-label col-form-label-sm">Canal de contacto</label>
+                                <select class="form-control form-control-sm" name="contactChannel" id="contact-channel-2">
+                                    <option selected>Seleccionar canal</option>
+                                    <option value="tel">Teléfono</option>
+                                    <option value="email">Email</option>
+                                    <option value="whatsapp">Whatsapp</option> 
+                                    <option value="linkedin">Linkedin</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="userAcount" class="col-form-label col-form-label-sm">Cuenta de usuario</label>
+                                <input type="text" class="form-control form-control-sm" id="userAcount-2" name="userAcount" placeholder="@ejemplo">
+                            </div>
+                            <div class="col">
+                                <label for="preferences" class="col-form-label col-form-label-sm">Preferencias</label>
+                                <select class="form-control form-control-sm" name="preferences" id="preferences-2">
+                                    <option selected>Sin preferencia</option>
+                                    <option value="favorite">Canal favorito</option>
+                                    <option value="do not disturb">No molestar</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group form-row contact-channel-info">
+                            <div class="col">
+                                <label for="contact-channel" class="col-form-label col-form-label-sm">Canal de contacto</label>
+                                <select class="form-control form-control-sm" name="contactChannel" id="contact-channel-3">
+                                    <option selected>Seleccionar canal</option>
+                                    <option value="tel">Teléfono</option>
+                                    <option value="email">Email</option>
+                                    <option value="whatsapp">Whatsapp</option> 
+                                    <option value="linkedin">Linkedin</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="userAcount" class="col-form-label col-form-label-sm">Cuenta de usuario</label>
+                                <input type="text" class="form-control form-control-sm" id="userAcount-3" name="userAcount" placeholder="@ejemplo">
+                            </div>
+                            <div class="col">
+                                <label for="preferences" class="col-form-label col-form-label-sm">Preferencias</label>
+                                <select class="form-control form-control-sm" name="preferences" id="preferences-3">
+                                    <option selected>Sin preferencia</option>
+                                    <option value="favorite">Canal favorito</option>
+                                    <option value="do not disturb">No molestar</option> 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group form-row contact-channel-info">
+                            <div class="col">
+                                <label for="contact-channel" class="col-form-label col-form-label-sm">Canal de contacto</label>
+                                <select class="form-control form-control-sm" name="contactChannel" id="contact-channel-4">
+                                    <option selected>Seleccionar canal</option>
+                                    <option value="tel">Teléfono</option>
+                                    <option value="email">Email</option>
+                                    <option value="whatsapp">Whatsapp</option> 
+                                    <option value="linkedin">Linkedin</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="userAcount" class="col-form-label col-form-label-sm">Cuenta de usuario</label>
+                                <input type="text" class="form-control form-control-sm" id="userAcount-4" name="userAcount" placeholder="@ejemplo">
+                            </div>
+                            <div class="col">
+                                <label for="preferences" class="col-form-label col-form-label-sm">Preferencias</label>
+                                <select class="form-control form-control-sm" name="preferences" id="preferences-4">
+                                    <option selected>Sin preferencia</option>
+                                    <option value="favorite">Canal favorito</option>
+                                    <option value="do not disturb">No molestar</option> 
+                                </select>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer border-top-0">
-                    <button type="button" class="btn btn-outline-primary btn-lg modal-button border-0" data-dismiss="modal" disabled>Cancelar</button>
-                    <button type="button" class="btn btn-success btn-lg modal-button create" disabled>Guardar contacto</button>
+                    <button type="button" class="btn btn-outline-primary btn-lg modal-button border-0" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success btn-lg modal-button create">Guardar contacto</button>
                 </div>
             </div>
         </div>

@@ -8,6 +8,8 @@ const selectCity = document.querySelector("#city");
 createButton.addEventListener('click', createCompany);
 selectCity.addEventListener('click', getCities);
 
+$('#new-company').on('hide.bs.modal', () => { document.getElementById("new-company-form").reset() });
+
 /**
  * @method getCities
  * @description Method to get cities from API
@@ -18,10 +20,10 @@ function getCities() {
     }
     const citiesList = apiRequest(`${BASE_URL}cities`, requestInfo);
     citiesList.then((response) => {
-        selectCity.innerHTML = `<option value= "null" selected>Seleccionar ciudad</option>`;
+        selectCity.innerHTML = `<option selected>Seleccionar ciudad</option>`;
         console.log(response);
         fillCities(response);
-    }).catch
+    }).catch((error) => { console.log(error) });
 }
 
 /**

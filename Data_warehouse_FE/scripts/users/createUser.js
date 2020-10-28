@@ -6,6 +6,8 @@ const createButton = document.querySelector(".create");
 
 createButton.addEventListener('click', createUser);
 
+$('#new-user').on('hide.bs.modal', () => { document.getElementById("new-user-form").reset() });
+
 
 /**
  * @method createUser

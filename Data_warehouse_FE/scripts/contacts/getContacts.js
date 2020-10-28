@@ -99,7 +99,6 @@ function contactsMarkUp(id, name, lastname, email, country, region, company, pos
         </td>
         <td class="align-middle">${company}</td>
         <td class="align-middle">${position}</td>
-        <td class="align-middle"><button type="button" class="btn btn-xsm btn-tag">Whatsapp</button></td>
         <td class="align-middle">
             <div class="div-interest d-inline-flex align-items-center">
                 <p class="interest-percentage">${interest}%</p>
