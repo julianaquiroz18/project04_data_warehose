@@ -8,6 +8,7 @@ const companiesBodyTable = document.querySelector(".companies-body-table");
  * @description Method to get companies from API
  */
 function getCompanies() {
+    companiesBodyTable.innerHTML = "";
     const requestInfo = {
         headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
     }
@@ -34,6 +35,7 @@ function fillCompaniesInfo(companiesList) {
         return companiesMarkUp(id, name, address, email, telephone, city);
     });
     companiesBodyTable.innerHTML += companyHTML.join("\n");
+    companiesBodyTable.querySelectorAll('.delete').forEach((button) => button.addEventListener('click', deleteCompany));
 }
 
 /**
@@ -56,12 +58,35 @@ function companiesMarkUp(id, name, address, email, telephone, city) {
         <td class="align-middle">${telephone}</td>
         <td class="align-middle">${city}</td>
         <td class="align-middle">
-            <button type="button" class="btn btn-lg text-black-50 ml-n3" data-id:"${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-lg text-black-50" data-id:"${id}"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-lg text-black-50 ml-n3 delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-lg text-black-50" data-id="${id}"><i class="fa fa-pencil" aria-hidden="true"></i></button>
         </td>
     </tr>`
     );
 }
+
+/**
+ * @method deleteCompany
+ * @description Delete company
+ * @param {object} e event information
+ */
+function deleteCompany(e) {
+    const companyID = e.currentTarget.getAttribute('data-id');
+    console.log(e)
+    console.log(companyID)
+    const requestInfo = {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
+    };
+
+    const companiesList = apiRequest(`${BASE_URL}companies/${companyID}`, requestInfo);
+    companiesList.then((response) => {
+        console.log(response);
+        getCompanies();
+    }).catch((error) => { console.log(error) });
+
+}
+
 
 getCompanies();
 

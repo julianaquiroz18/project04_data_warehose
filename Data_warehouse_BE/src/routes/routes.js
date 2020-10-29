@@ -64,7 +64,7 @@ router.post("/users", jwtExtract, verifyToken, checkIfAdmin, validate({ body: re
  */
 router.delete("/users/:userID", jwtExtract, verifyToken, checkIfAdmin, checkUserID, async(req, res) => {
     await User.deleteOne({ _id: req.params.userID })
-    res.status(200).send("User was deleted");
+    res.status(200).json({ message: "User was deleted" });
 });
 
 /**
@@ -72,7 +72,7 @@ router.delete("/users/:userID", jwtExtract, verifyToken, checkIfAdmin, checkUser
  */
 router.put("/users/:userID", jwtExtract, verifyToken, checkIfAdmin, checkUserID, validate({ body: registerSchema }), checkPassword, checkUserToUpdate, getUserInfo, async(req, res) => {
     await User.updateOne({ _id: req.params.userID }, req.userRegistrationInfo);
-    res.status(200).send("User information was updated");
+    res.status(200).json({ message: "User information was updated" });
 });
 
 
@@ -101,7 +101,7 @@ router.post("/companies", jwtExtract, verifyToken, validate({ body: companySchem
  */
 router.delete("/companies/:companyID", jwtExtract, verifyToken, checkCompanyID, async(req, res) => {
     await Company.deleteOne({ _id: req.params.companyID })
-    res.status(200).send("Company was deleted");
+    res.status(200).json({ message: "Company was deleted" });
 });
 
 /**
@@ -109,7 +109,7 @@ router.delete("/companies/:companyID", jwtExtract, verifyToken, checkCompanyID, 
  */
 router.put("/companies/:companyID", jwtExtract, verifyToken, checkCompanyID, validate({ body: companySchema }), checkCompanyToUpdate, async(req, res) => {
     await Company.updateOne({ _id: req.params.companyID }, req.body);
-    res.status(200).send("Company information was updated");
+    res.status(200).json({ message: "Company information was updated" });
 });
 
 //Contacts CRUD
@@ -144,7 +144,7 @@ router.post("/contacts", jwtExtract, verifyToken, validate({ body: contactSchema
  */
 router.delete("/contacts/:contactID", jwtExtract, verifyToken, checkContactID, async(req, res) => {
     await Contact.deleteOne({ _id: req.params.contactID })
-    res.status(200).send("Contact was deleted");
+    res.status(200).json({ message: "Contact was deleted" });
 });
 
 /**
@@ -152,7 +152,7 @@ router.delete("/contacts/:contactID", jwtExtract, verifyToken, checkContactID, a
  */
 router.put("/contacts/:contactID", jwtExtract, verifyToken, checkContactID, validate({ body: contactSchema }), checkContactToUpdate, async(req, res) => {
     await Contact.updateOne({ _id: req.params.contactID }, req.body);
-    res.status(200).send("Contact information was updated");
+    res.status(200).json({ message: "Contact information was updated" });
 });
 
 
@@ -175,7 +175,6 @@ router.post("/countries", jwtExtract, verifyToken, validate({ body: countrySchem
     region.countries.push(newCountry);
     await region.save();
     res.status(201).json(newCountry);
-    //res.status(201).send(region);
 });
 
 router.post("/cities", jwtExtract, verifyToken, validate({ body: citySchema }), checkCity, async(req, res) => {
@@ -185,7 +184,6 @@ router.post("/cities", jwtExtract, verifyToken, validate({ body: citySchema }), 
     country.cities.push(newCity);
     await country.save();
     res.status(201).json(newCity);
-    //res.status(201).send(country);
 });
 
 /**
@@ -193,11 +191,6 @@ router.post("/cities", jwtExtract, verifyToken, validate({ body: citySchema }), 
  */
 router.get("/regions", jwtExtract, verifyToken, async(req, res) => {
     const regionsList = await Region.find({}, ['name']).populate({ path: 'countries', select: ['name'], populate: { path: 'cities', select: ['name'] } }).exec();
-    // const x = regionsList.map(region => ({
-    //     _id: region._id,
-    //     name: region.name,
-    //     countries: region.countries
-    // }));
     res.status(200).json(regionsList);
 });
 
@@ -232,17 +225,17 @@ router.get("/cities/:countryID", jwtExtract, verifyToken, async(req, res) => {
  */
 router.delete("/regions/:regionID", jwtExtract, verifyToken, checkRegionID, async(req, res) => {
     await Region.deleteOne({ _id: req.params.regionID })
-    res.status(200).send("Region was deleted");
+    res.status(200).json({ message: "Region was deleted" });
 });
 
 router.delete("/countries/:countryID", jwtExtract, verifyToken, checkCountryID, async(req, res) => {
     await Country.deleteOne({ _id: req.params.countryID })
-    res.status(200).send("Country was deleted");
+    res.status(200).json({ message: "Country was deleted" });
 });
 
 router.delete("/cities/:cityID", jwtExtract, verifyToken, checkCityID, async(req, res) => {
     await City.deleteOne({ _id: req.params.cityID })
-    res.status(200).send("City was deleted");
+    res.status(200).json({ message: "City was deleted" });
 });
 
 /**
@@ -250,17 +243,17 @@ router.delete("/cities/:cityID", jwtExtract, verifyToken, checkCityID, async(req
  */
 router.put("/regions/:regionID", jwtExtract, verifyToken, checkRegionID, validate({ body: regionSchema }), checkRegionToUpdate, async(req, res) => {
     await Region.updateOne({ _id: req.params.regionID }, req.body);
-    res.status(200).send("Region information was updated");
+    res.status(200).json({ message: "Region information was updated" });
 });
 
 router.put("/countries/:countryID", jwtExtract, verifyToken, checkCountryID, validate({ body: countrySchema }), checkCountryToUpdate, async(req, res) => {
     await Country.updateOne({ _id: req.params.countryID }, req.body);
-    res.status(200).send("Country information was updated");
+    res.status(200).json({ message: "Country information was updated" });
 });
 
 router.put("/cities/:cityID", jwtExtract, verifyToken, checkCityID, validate({ body: citySchema }), checkCityToUpdate, async(req, res) => {
     await City.updateOne({ _id: req.params.cityID }, req.body);
-    res.status(200).send("City information was updated");
+    res.status(200).json({ message: "City information was updated" });
 });
 
 module.exports = {

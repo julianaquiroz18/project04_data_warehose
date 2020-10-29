@@ -1,5 +1,5 @@
 import { apiRequest } from '../services.js';
-import { getCompanies } from './getCompanies.js';
+import { getCompanies } from './getAndDeleteCompanies.js';
 const BASE_URL = "http://localhost:9092/data_wharehose/v1/";
 
 const createButton = document.querySelector(".create");

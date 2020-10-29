@@ -8,6 +8,7 @@ const contactsBodyTable = document.querySelector(".contacts-body-table");
  * @description Method to get contacts from API
  */
 function getContacts() {
+    contactsBodyTable.innerHTML = "";
     const requestInfo = {
         headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
     }
@@ -109,8 +110,8 @@ function contactsMarkUp(id, name, lastname, email, country, region, company, pos
         </td>
         <td class="align-middle text-center">
             <button type="button" class="btn text-black-50"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-lg text-black-50 d-none" data-id:"${id}><i class="fa fa-trash" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-lg text-black-50 d-none" data-id:"${id}><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-lg text-black-50 d-none" data-id="${id}><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-lg text-black-50 d-none" data-id="${id}><i class="fa fa-pencil" aria-hidden="true"></i></button>
         </td>
     </tr>`
     );
