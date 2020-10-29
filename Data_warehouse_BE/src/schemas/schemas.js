@@ -11,6 +11,19 @@ const registerSchema = {
     }
 }
 
+const updateRegisterSchema = {
+    type: 'object',
+    required: ['name', 'lastname', 'email', 'isAdmin'],
+    properties: {
+        name: { type: 'string' },
+        lastname: { type: 'string' },
+        email: { type: 'string', pattern: "^[A-Za-z0-9._-]*@[a-z]*.com$" },
+        isAdmin: { tipe: 'string' },
+        password: { type: 'string', pattern: '^[A-Za-z0-9.!#$%&‘*+=?^_`{|}~-]{4,}$' },
+        repeatPassword: { type: 'string', pattern: '^[A-Za-z0-9.!#$%&‘*+=?^_`{|}~-]{4,}$' }
+    }
+}
+
 const companySchema = {
     type: 'object',
     required: ['name', 'address', 'telephone', 'email', 'city'],
@@ -74,5 +87,6 @@ module.exports = {
     contactSchema,
     regionSchema,
     countrySchema,
-    citySchema
+    citySchema,
+    updateRegisterSchema
 }

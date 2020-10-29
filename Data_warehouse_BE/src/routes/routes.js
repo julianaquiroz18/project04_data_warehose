@@ -20,7 +20,7 @@ const { jwtGenerator, jwtExtract, verifyToken } = require('../middlewares/jwt');
 /**
  * Schema validator
  */
-const { registerSchema, companySchema, contactSchema, regionSchema, countrySchema, citySchema } = require('../schemas/schemas');
+const { registerSchema, updateRegisterSchema, companySchema, contactSchema, regionSchema, countrySchema, citySchema } = require('../schemas/schemas');
 const { Validator } = require('express-json-validator-middleware');
 const validator = new Validator({ allErrors: true });
 const validate = validator.validate;
@@ -49,6 +49,15 @@ router.get("/users", jwtExtract, verifyToken, checkIfAdmin, async(req, res) => {
 });
 
 /**
+ * Get User by ID
+ */
+router.get("/users/:userID", jwtExtract, verifyToken, async(req, res) => {
+    const user = await User.findById(req.params.userID).exec();
+    res.status(200).json(user);
+});
+
+
+/**
  * User registration (only admin)
  */
 router.post("/users", jwtExtract, verifyToken, checkIfAdmin, validate({ body: registerSchema }), checkPassword, checkUser, getUserInfo, async(req, res) => {
@@ -70,7 +79,8 @@ router.delete("/users/:userID", jwtExtract, verifyToken, checkIfAdmin, checkUser
 /**
  * Update user (only admin)
  */
-router.put("/users/:userID", jwtExtract, verifyToken, checkIfAdmin, checkUserID, validate({ body: registerSchema }), checkPassword, checkUserToUpdate, getUserInfo, async(req, res) => {
+router.put("/users/:userID", jwtExtract, verifyToken, checkIfAdmin, checkUserID, validate({ body: updateRegisterSchema }), checkPassword, checkUserToUpdate, getUserInfo, async(req, res) => {
+    delete req.userRegistrationInfo.repeatPassword;
     await User.updateOne({ _id: req.params.userID }, req.userRegistrationInfo);
     res.status(200).json({ message: "User information was updated" });
 });

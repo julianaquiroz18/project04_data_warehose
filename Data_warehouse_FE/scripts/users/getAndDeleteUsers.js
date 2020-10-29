@@ -1,4 +1,5 @@
 import { apiRequest } from '../services.js';
+import { editUser } from '../users/editUser.js';
 const BASE_URL = "http://localhost:9092/data_wharehose/v1/";
 
 const usersBodyTable = document.querySelector(".users-body-table");
@@ -35,6 +36,7 @@ function fillUsersInfo(userList) {
     });
     usersBodyTable.innerHTML += userHTML.join("\n");
     usersBodyTable.querySelectorAll('.delete').forEach((button) => button.addEventListener('click', deleteUser));
+    usersBodyTable.querySelectorAll('.edit').forEach((button) => button.addEventListener('click', editUser));
 };
 
 /**
@@ -56,7 +58,7 @@ function usersMarkUp(id, name, lastname, email, profile) {
         <td class="align-middle">${profile}</td>
         <td class="align-middle">
             <button type="button" class="btn btn-lg text-black-50 ml-n3 delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-lg text-black-50" data-id="${id}"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-lg text-black-50 edit" data-id="${id}" data-toggle="modal" data-target="#edit-user"><i class="fa fa-pencil" aria-hidden="true"></i></button>
         </td>
     </tr>`
     );
