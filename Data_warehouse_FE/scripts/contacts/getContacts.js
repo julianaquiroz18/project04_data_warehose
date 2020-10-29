@@ -39,6 +39,9 @@ function fillContactsInfo(contactsList) {
         return contactsMarkUp(id, name, lastname, email, country, region, company, position, interest, interestColor);
     });
     contactsBodyTable.innerHTML += contactHTML.join("\n");
+    contactsBodyTable.querySelectorAll('.contact-row').forEach((row) => row.addEventListener('mouseenter', showOrHideContactOptions));
+    contactsBodyTable.querySelectorAll('.contact-row').forEach((row) => row.addEventListener('mouseleave', showOrHideContactOptions));
+    contactsBodyTable.querySelectorAll('.contact-checkbox').forEach((checkbox) => checkbox.addEventListener('click', selectContactRow));
 }
 
 
@@ -82,8 +85,8 @@ const getColor = interest => {
  */
 function contactsMarkUp(id, name, lastname, email, country, region, company, position, interest, interestColor) {
     return (
-        `<tr>
-        <td class="align-middle"><input class="ml-3" type="checkbox" name="user-info" data-id:"${id}></td>
+        `<tr class="contact-row" data-info="prueba">
+        <td class="align-middle"><input class="ml-3 contact-checkbox" type="checkbox" name="user-info" data-id="${id}"></td>
         <td class="align-middle">
             <div class="d-flex flex-row align-items-center">
                 <img src="https://i.picsum.photos/id/1027/2848/4272.jpg?hmac=EAR-f6uEqI1iZJjB6-NzoZTnmaX0oI0th3z8Y78UpKM" alt="user pic" class="user-img rounded-circle">
@@ -109,12 +112,22 @@ function contactsMarkUp(id, name, lastname, email, country, region, company, pos
             </div>
         </td>
         <td class="align-middle text-center">
-            <button type="button" class="btn text-black-50"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-lg text-black-50 d-none" data-id="${id}><i class="fa fa-trash" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-lg text-black-50 d-none" data-id="${id}><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn text-black-50 ellipsis"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-lg text-black-50 d-none delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-lg text-black-50 d-none edit" data-id="${id}"><i class="fa fa-pencil" aria-hidden="true"></i></button>
         </td>
     </tr>`
     );
+}
+
+function showOrHideContactOptions(e) {
+    e.currentTarget.querySelector('.ellipsis').classList.toggle('d-none');
+    e.currentTarget.querySelector('.delete').classList.toggle('d-none');
+    e.currentTarget.querySelector('.edit').classList.toggle('d-none');
+}
+
+function selectContactRow(e) {
+    e.currentTarget.parentNode.parentNode.classList.toggle('selected-row');
 }
 
 getContacts();
