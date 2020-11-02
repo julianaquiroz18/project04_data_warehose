@@ -77,8 +77,8 @@ function deleteUser(e) {
         headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
     };
 
-    const companiesList = apiRequest(`${BASE_URL}users/${userID}`, requestInfo);
-    companiesList.then((response) => {
+    const deletedUser = apiRequest(`${BASE_URL}users/${userID}`, requestInfo);
+    deletedUser.then((response) => {
         console.log(response);
         getUsers();
     }).catch((error) => { console.log(error) });

@@ -98,6 +98,14 @@ router.get("/companies", jwtExtract, verifyToken, async(req, res) => {
 });
 
 /**
+ * Get Company by ID
+ */
+router.get("/companies/:companyID", jwtExtract, verifyToken, async(req, res) => {
+    const company = await Company.findById(req.params.companyID).exec();
+    res.status(200).json(company);
+});
+
+/**
  * Companies registration 
  */
 router.post("/companies", jwtExtract, verifyToken, validate({ body: companySchema }), checkCompany, async(req, res) => {

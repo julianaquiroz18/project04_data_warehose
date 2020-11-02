@@ -2,11 +2,18 @@ import { apiRequest } from '../services.js';
 const BASE_URL = "http://localhost:9092/data_wharehose/v1/";
 
 const contactsBodyTable = document.querySelector(".contacts-body-table");
+const contactsSelected = document.querySelector(".contacts-selected");
+const deleteContactsButton = document.querySelector(".delete-contacts");
+const deleteButtonConfirmation = document.querySelector(".delete");
+const mainCheckbox = document.querySelector(".all-checkbox");
+let contactsIDArray = [];
 
-/**
- * @method getContacts
- * @description Method to get contacts from API
- */
+mainCheckbox.addEventListener('click', selectAllContacts);
+deleteButtonConfirmation.addEventListener('click', deleteContacts)
+    /**
+     * @method getContacts
+     * @description Method to get contacts from API
+     */
 function getContacts() {
     contactsBodyTable.innerHTML = "";
     const requestInfo = {
@@ -41,6 +48,7 @@ function fillContactsInfo(contactsList) {
     contactsBodyTable.innerHTML += contactHTML.join("\n");
     contactsBodyTable.querySelectorAll('.contact-row').forEach((row) => row.addEventListener('mouseenter', showOrHideContactOptions));
     contactsBodyTable.querySelectorAll('.contact-row').forEach((row) => row.addEventListener('mouseleave', showOrHideContactOptions));
+    contactsBodyTable.querySelectorAll('.delete').forEach((button) => button.addEventListener('click', deleteOneContact));
     contactsBodyTable.querySelectorAll('.contact-checkbox').forEach((checkbox) => checkbox.addEventListener('click', selectContactRow));
 }
 
@@ -85,7 +93,7 @@ const getColor = interest => {
  */
 function contactsMarkUp(id, name, lastname, email, country, region, company, position, interest, interestColor) {
     return (
-        `<tr class="contact-row" data-info="prueba">
+        `<tr class="contact-row">
         <td class="align-middle"><input class="ml-3 contact-checkbox" type="checkbox" name="user-info" data-id="${id}"></td>
         <td class="align-middle">
             <div class="d-flex flex-row align-items-center">
@@ -127,7 +135,87 @@ function showOrHideContactOptions(e) {
 }
 
 function selectContactRow(e) {
+    updateIDsArray(e.currentTarget);
+    updateContactsUI();
     e.currentTarget.parentNode.parentNode.classList.toggle('selected-row');
+}
+
+function selectAllContacts(e) {
+    const checkboxes = document.getElementsByClassName('contact-checkbox');
+    for (let i = 0, n = checkboxes.length; i < n; i++) {
+        checkboxes[i].checked = e.currentTarget.checked;
+        updateIDsArray(checkboxes[i]);
+        updateContactsUI();
+        if (e.currentTarget.checked) {
+            checkboxes[i].parentNode.parentNode.classList.add('selected-row');
+        } else {
+            checkboxes[i].parentNode.parentNode.classList.remove('selected-row');
+        }
+    }
+
+}
+
+function updateIDsArray(checkbox) {
+    const contactID = checkbox.getAttribute('data-id');
+    const alreadyInArray = contactsIDArray.includes(contactID);
+    if (checkbox.checked && !alreadyInArray) {
+        contactsIDArray.push(contactID);
+    }
+    if (!checkbox.checked) {
+        mainCheckbox.checked = false;
+        const index = contactsIDArray.indexOf(contactID)
+        contactsIDArray.splice(index, 1);
+    }
+}
+
+function updateContactsUI() {
+    const arrayLength = contactsIDArray.length;
+    if (arrayLength === 0) {
+        contactsSelected.classList.add('d-none');
+        deleteContactsButton.classList.add('d-none');
+    } else {
+        contactsSelected.classList.remove('d-none');
+        deleteContactsButton.classList.remove('d-none');
+        contactsSelected.innerHTML = `${arrayLength} seleccionados`
+    }
+}
+
+/**
+ * @method deleteOneContact
+ * @description Delete user
+ * @param {object} e event information
+ */
+function deleteOneContact(e) {
+    const contactID = e.currentTarget.getAttribute('data-id');
+    const requestInfo = {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
+    };
+
+    const deletedUser = apiRequest(`${BASE_URL}contacts/${contactID}`, requestInfo);
+    deletedUser.then((response) => {
+        console.log(response);
+        getContacts();
+    }).catch((error) => { console.log(error) });
+}
+
+
+/**
+ * @method deleteContacts
+ * @description Delete user
+ */
+function deleteContacts() {
+    const requestInfo = {
+        method: 'DELETE',
+        headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
+    };
+    contactsIDArray.map(contactID => {
+        const deletedContact = apiRequest(`${BASE_URL}contacts/${contactID}`, requestInfo);
+        deletedContact.then((response) => {
+            console.log(response);
+            getContacts();
+        }).catch((error) => { console.log(error) });
+    });
 }
 
 getContacts();

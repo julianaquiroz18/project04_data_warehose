@@ -1,5 +1,5 @@
 import { apiRequest } from '../services.js';
-import { getContacts } from './getContacts.js';
+import { getContacts } from './getAndDeleteContacts.js';
 const BASE_URL = "http://localhost:9092/data_wharehose/v1/";
 
 const createButton = document.querySelector(".create");
