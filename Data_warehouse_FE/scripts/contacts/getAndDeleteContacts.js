@@ -1,4 +1,5 @@
 import { apiRequest } from '../services.js';
+import { editContact } from '../contacts/editContacts.js';
 const BASE_URL = "http://localhost:9092/data_wharehose/v1/";
 
 const contactsBodyTable = document.querySelector(".contacts-body-table");
@@ -49,6 +50,7 @@ function fillContactsInfo(contactsList) {
     contactsBodyTable.querySelectorAll('.contact-row').forEach((row) => row.addEventListener('mouseenter', showOrHideContactOptions));
     contactsBodyTable.querySelectorAll('.contact-row').forEach((row) => row.addEventListener('mouseleave', showOrHideContactOptions));
     contactsBodyTable.querySelectorAll('.delete').forEach((button) => button.addEventListener('click', deleteOneContact));
+    contactsBodyTable.querySelectorAll('.edit').forEach((button) => button.addEventListener('click', editContact));
     contactsBodyTable.querySelectorAll('.contact-checkbox').forEach((checkbox) => checkbox.addEventListener('click', selectContactRow));
 }
 
@@ -122,7 +124,7 @@ function contactsMarkUp(id, name, lastname, email, country, region, company, pos
         <td class="align-middle text-center">
             <button type="button" class="btn text-black-50 ellipsis"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
             <button type="button" class="btn btn-lg text-black-50 d-none delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-            <button type="button" class="btn btn-lg text-black-50 d-none edit" data-id="${id}"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-lg text-black-50 d-none edit" data-id="${id}" data-toggle="modal" data-target="#edit-contact"><i class="fa fa-pencil" aria-hidden="true"></i></button>
         </td>
     </tr>`
     );

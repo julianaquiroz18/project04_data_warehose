@@ -141,6 +141,15 @@ router.get("/contacts", jwtExtract, verifyToken, async(req, res) => {
 });
 
 /**
+ * Get Contact by ID
+ */
+router.get("/contacts/:contactID", jwtExtract, verifyToken, async(req, res) => {
+    const contact = await Contact.findById(req.params.contactID).exec();
+    res.status(200).json(contact);
+});
+
+
+/**
  * Get contacts filtered
  */
 router.get("/contacts/filter", jwtExtract, verifyToken, getFilterFields, async(req, res) => {

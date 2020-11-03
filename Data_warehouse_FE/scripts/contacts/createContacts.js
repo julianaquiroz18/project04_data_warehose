@@ -7,6 +7,8 @@ const selectCompany = document.querySelector("#company");
 const selectRegion = document.querySelector("#region");
 const selectCountry = document.querySelector("#country");
 const selectCity = document.querySelector("#city");
+const interestRange = document.querySelector('.interest-range');
+const interestSelect = document.getElementById('interest-select');
 
 createButton.addEventListener('click', createContact);
 selectCompany.addEventListener('click', getCompanies);
@@ -14,8 +16,20 @@ selectRegion.addEventListener('click', getRegions);
 selectRegion.addEventListener('change', getCountries);
 selectCountry.addEventListener('change', getCities);
 selectCity.addEventListener('change', enableAddress);
+interestRange.addEventListener('mousemove', updateSelect)
+interestSelect.addEventListener('change', updateRange)
 
 $('#new-contact').on('hide.bs.modal', () => { document.getElementById("new-contact-form").reset() });
+
+function updateSelect() {
+    const newValue = interestRange.value;
+    interestSelect.value = newValue;
+}
+
+function updateRange() {
+    const newValue = interestSelect.value;
+    interestRange.value = newValue;
+}
 
 /**
  * @method getCompanies
