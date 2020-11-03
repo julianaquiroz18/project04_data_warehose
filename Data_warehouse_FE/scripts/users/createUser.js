@@ -2,10 +2,15 @@ import { apiRequest } from '../services.js';
 import { getUsers } from './getAndDeleteUsers.js';
 const BASE_URL = "http://localhost:9092/data_wharehose/v1/";
 
+/**
+ * Global Variables
+ */
 const createButton = document.querySelector(".create");
-
 createButton.addEventListener('click', createUser);
 
+/**
+ * Events
+ */
 $('#new-user').on('hide.bs.modal', () => { document.getElementById("new-user-form").reset() });
 
 

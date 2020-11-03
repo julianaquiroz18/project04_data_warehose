@@ -2,6 +2,9 @@ import { apiRequest } from '../services.js';
 import { editContact } from '../contacts/editContacts.js';
 const BASE_URL = "http://localhost:9092/data_wharehose/v1/";
 
+/**
+ * Global Variables
+ */
 const contactsBodyTable = document.querySelector(".contacts-body-table");
 const contactsSelected = document.querySelector(".contacts-selected");
 const deleteContactsButton = document.querySelector(".delete-contacts");
@@ -9,12 +12,16 @@ const deleteButtonConfirmation = document.querySelector(".delete");
 const mainCheckbox = document.querySelector(".all-checkbox");
 let contactsIDArray = [];
 
+/**
+ * Events
+ */
 mainCheckbox.addEventListener('click', selectAllContacts);
 deleteButtonConfirmation.addEventListener('click', deleteContacts)
-    /**
-     * @method getContacts
-     * @description Method to get contacts from API
-     */
+
+/**
+ * @method getContacts
+ * @description Method to get contacts from API
+ */
 function getContacts() {
     contactsBodyTable.innerHTML = "";
     const requestInfo = {
@@ -130,18 +137,33 @@ function contactsMarkUp(id, name, lastname, email, country, region, company, pos
     );
 }
 
+/**
+ * @method showOrHideContactOptions
+ * @description Change UI method to show edit and delete buttons when contact hover
+ * @param {object} e Event Information
+ */
 function showOrHideContactOptions(e) {
     e.currentTarget.querySelector('.ellipsis').classList.toggle('d-none');
     e.currentTarget.querySelector('.delete').classList.toggle('d-none');
     e.currentTarget.querySelector('.edit').classList.toggle('d-none');
 }
 
+/**
+ * @method selectContactRow
+ * @description Change UI when select conntact and storage Contact selected IDs in array
+ * @param {object} e Event Information
+ */
 function selectContactRow(e) {
     updateIDsArray(e.currentTarget);
     updateContactsUI();
     e.currentTarget.parentNode.parentNode.classList.toggle('selected-row');
 }
 
+/**
+ * @method selectAllContacts
+ * @description Change UI when main checkbox is selected (select all conntacts) and storage Contacts selected IDs in array
+ * @param {object} e Event Information
+ */
 function selectAllContacts(e) {
     const checkboxes = document.getElementsByClassName('contact-checkbox');
     for (let i = 0, n = checkboxes.length; i < n; i++) {
@@ -157,6 +179,11 @@ function selectAllContacts(e) {
 
 }
 
+/**
+ * @method updateIDsArray
+ * @description Method to update array with contacts selected IDs
+ * @param {object} e Event Information
+ */
 function updateIDsArray(checkbox) {
     const contactID = checkbox.getAttribute('data-id');
     const alreadyInArray = contactsIDArray.includes(contactID);
@@ -170,6 +197,10 @@ function updateIDsArray(checkbox) {
     }
 }
 
+/**
+ * @method updateContactsUI
+ * @description Method to update UI showing delete button and number of contacts selected
+ */
 function updateContactsUI() {
     const arrayLength = contactsIDArray.length;
     if (arrayLength === 0) {
@@ -184,7 +215,7 @@ function updateContactsUI() {
 
 /**
  * @method deleteOneContact
- * @description Delete user
+ * @description Delete only one contact
  * @param {object} e event information
  */
 function deleteOneContact(e) {
@@ -194,8 +225,8 @@ function deleteOneContact(e) {
         headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
     };
 
-    const deletedUser = apiRequest(`${BASE_URL}contacts/${contactID}`, requestInfo);
-    deletedUser.then((response) => {
+    const deletedContact = apiRequest(`${BASE_URL}contacts/${contactID}`, requestInfo);
+    deletedContact.then((response) => {
         console.log(response);
         getContacts();
     }).catch((error) => { console.log(error) });
@@ -204,7 +235,7 @@ function deleteOneContact(e) {
 
 /**
  * @method deleteContacts
- * @description Delete user
+ * @description Delete multiple contacts
  */
 function deleteContacts() {
     const requestInfo = {

@@ -2,6 +2,9 @@ import { apiRequest } from '../services.js';
 import { editUser } from '../users/editUser.js';
 const BASE_URL = "http://localhost:9092/data_wharehose/v1/";
 
+/**
+ * Global Variables
+ */
 const usersBodyTable = document.querySelector(".users-body-table");
 
 /**

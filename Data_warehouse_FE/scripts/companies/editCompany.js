@@ -2,6 +2,9 @@ import { apiRequest } from '../services.js';
 import { getCompanies } from './getAndDeleteCompanies.js';
 const BASE_URL = "http://localhost:9092/data_wharehose/v1/";
 
+/**
+ * Global Variables
+ */
 const updateButton = document.querySelector(".update-button");
 let name = document.querySelector("#edit-name");
 let address = document.querySelector("#edit-address");
@@ -10,10 +13,18 @@ let telephone = document.querySelector("#edit-telephone");
 let city = document.querySelector("#edit-city");
 let companyID;
 
+/**
+ * Events
+ */
 updateButton.addEventListener('click', updateCompany);
-
 $('#edit-company').on('hide.bs.modal', () => { document.getElementById("edit-company-form").reset() });
 
+
+/**
+ * @method editCompany
+ * @description Edit company information method
+ * @param {object} e event information
+ */
 async function editCompany(e) {
     companyID = e.currentTarget.getAttribute('data-id');
     const companyCurrentData = await getCompanyData(companyID);
@@ -23,7 +34,12 @@ async function editCompany(e) {
     fillModal(companyCurrentData);
 }
 
-
+/**
+ * @method citiiegetCompanyDatasMarkUp
+ * @description Get current company Information
+ * @param {string} companyID
+ * @return {object} companyCurrentData
+ */
 async function getCompanyData(companyID) {
     try {
         const requestInfo = {
@@ -36,7 +52,11 @@ async function getCompanyData(companyID) {
     }
 }
 
-
+/**
+ * @method fillModal
+ * @description Fill edit-modal with company current information
+ * @param {object} companyCurrentData
+ */
 function fillModal(companyCurrentData) {
     name.value = companyCurrentData.name;
     address.value = companyCurrentData.address;
@@ -45,6 +65,10 @@ function fillModal(companyCurrentData) {
     city.value = companyCurrentData.city;
 }
 
+/**
+ * @method updateCompany
+ * @description Update company information
+ */
 function updateCompany() {
     const newCompanyData = {
         "name": name.value,
@@ -92,10 +116,10 @@ async function getCities() {
 /**
  * @method fillCities
  * @description Get city data and create rows
- * @param {array} companiesList
+ * @param {array} citiesList
  */
-function fillCities(companiesList) {
-    const cityHTML = companiesList.map(city => {
+function fillCities(citiesList) {
+    const cityHTML = citiesList.map(city => {
         const id = city._id;
         const name = city.name;
         return citiiesMarkUp(id, name);

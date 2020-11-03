@@ -2,12 +2,17 @@ import { apiRequest } from '../services.js';
 import { getCompanies } from './getAndDeleteCompanies.js';
 const BASE_URL = "http://localhost:9092/data_wharehose/v1/";
 
+/**
+ * Global Variables
+ */
 const createButton = document.querySelector(".create");
 const selectCity = document.querySelector("#city");
 
+/**
+ * Events
+ */
 createButton.addEventListener('click', createCompany);
 selectCity.addEventListener('click', getCities);
-
 $('#new-company').on('hide.bs.modal', () => { document.getElementById("new-company-form").reset() });
 
 /**

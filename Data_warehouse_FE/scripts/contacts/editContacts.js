@@ -2,6 +2,9 @@ import { apiRequest } from '../services.js';
 import { getContacts } from './getAndDeleteContacts.js';
 const BASE_URL = "http://localhost:9092/data_wharehose/v1/";
 
+/**
+ * Global Variables
+ */
 const updateButton = document.querySelector(".update-button");
 let name = document.querySelector("#edit-name");
 let lastname = document.querySelector("#edit-lastname");
@@ -28,18 +31,24 @@ let userAcount4 = document.querySelector("#edit-userAcount-4");
 let preferences4 = document.querySelector("#edit-preferences-4");
 let contactID;
 
+/**
+ * Events
+ */
 updateButton.addEventListener('click', updateContact);
 interestRange.addEventListener('mousemove', updateSelect);
 interestSelect.addEventListener('change', updateRange);
-
 region.addEventListener('change', getCountries);
 country.addEventListener('change', getCities);
 city.addEventListener('change', enableAddress);
-
 $('#edit-contact').on('hide.bs.modal', () => { document.getElementById("edit-contact-form").reset() });
-$('#edit-contact').on('hide.bs.modal', main);
+$('#edit-contact').on('hide.bs.modal', resetEditModalConfig);
 
 
+/**
+ * @method editContact
+ * @description Method to edit contact information
+ * @param {object} e Event information
+ */
 async function editContact(e) {
     contactID = e.currentTarget.getAttribute('data-id');
     const contactCurrentData = await getContactData(contactID);
@@ -49,7 +58,12 @@ async function editContact(e) {
     fillModal(contactCurrentData);
 }
 
-
+/**
+ * @method getContactData
+ * @description Method to get current contact information
+ * @param {string} contactID
+ * @return {object} contactCurrentData
+ */
 async function getContactData(contactID) {
     try {
         const requestInfo = {
@@ -62,7 +76,11 @@ async function getContactData(contactID) {
     }
 }
 
-
+/**
+ * @method fillModal
+ * @description Method to fill edit-modal with current contact information
+ * @param {object} contactCurrentData
+ */
 function fillModal(contactCurrentData) {
     name.value = contactCurrentData.name;
     lastname.value = contactCurrentData.lastname;
@@ -87,10 +105,12 @@ function fillModal(contactCurrentData) {
     contactChannel4.value = contactCurrentData.contactChannel[3].contactChannel;
     userAcount4.value = contactCurrentData.contactChannel[3].userAcount;
     preferences4.value = contactCurrentData.contactChannel[3].preferences;
-
-
 }
 
+/**
+ * @method updateContact
+ * @description Update contact information
+ */
 function updateContact() {
     const newContactData = {
         "name": name.value,
@@ -140,11 +160,19 @@ function updateContact() {
 
 }
 
+/**
+ * @method updateSelect
+ * @description Update interest select input value
+ */
 function updateSelect() {
     const newValue = interestRange.value;
     interestSelect.value = newValue;
 }
 
+/**
+ * @method updateRange
+ * @description Update interest range input value
+ */
 function updateRange() {
     const newValue = interestSelect.value;
     interestRange.value = newValue;
@@ -155,7 +183,7 @@ function updateRange() {
 
 /**
  * @method getCountries
- * @description Method to get countries for a specific region from API
+ * @description Method to get countries for a specific region from API and active country input
  */
 function getCountries() {
     country.disabled = false;
@@ -175,7 +203,7 @@ function getCountries() {
 
 /**
  * @method getCities
- * @description Method to get cities for a specific country from API
+ * @description Method to get cities for a specific country from API and active city input
  */
 function getCities() {
     city.disabled = false;
@@ -190,6 +218,10 @@ function getCities() {
     }).catch((error) => { console.log(error) });
 }
 
+/**
+ * @method enableAddress
+ * @description Enable address input
+ */
 function enableAddress() {
     address.disabled = false;
 }
@@ -199,7 +231,7 @@ function enableAddress() {
 
 /**
  * @method fillCompanies
- * @description Method to get Companies from API
+ * @description Method to fill company select options in edit modal
  */
 function fillCompanies() {
     const requestInfo = {
@@ -215,7 +247,7 @@ function fillCompanies() {
 
 /**
  * @method fillRegions
- * @description Method to get regions from API
+ * @description Method to fill region select options in edit modal
  */
 function fillRegions() {
     const requestInfo = {
@@ -231,7 +263,7 @@ function fillRegions() {
 
 /**
  * @method fillCountries
- * @description Method to get countries for a specific region from API
+ * @description Method to fill countries select options in edit modal
  */
 function fillCountries() {
     const requestInfo = {
@@ -247,7 +279,7 @@ function fillCountries() {
 
 /**
  * @method fillCities
- * @description Method to get cities from API
+ * @description Method to fill cities select options in edit modal
  */
 async function fillCities() {
     const requestInfo = {
@@ -262,7 +294,7 @@ async function fillCities() {
 
 /**
  * @method fillOptions
- * @description Get regions data and fill select options
+ * @description Fill select options
  * @param {array} infoList
  */
 function fillOptions(infoList, node) {
@@ -287,7 +319,11 @@ function optionssMarkUp(id, name) {
     );
 }
 
-function main() {
+/**
+ * @method resetEditModalConfig
+ * @description Disable country, city and address inputs and fill options after edid-modal is closed
+ */
+function resetEditModalConfig() {
     fillCompanies()
     fillRegions()
     fillCountries()
@@ -297,7 +333,7 @@ function main() {
     address.disabled = true;
 }
 
-main()
+resetEditModalConfig()
 
 export {
     editContact

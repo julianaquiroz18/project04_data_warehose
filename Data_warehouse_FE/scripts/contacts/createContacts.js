@@ -2,6 +2,9 @@ import { apiRequest } from '../services.js';
 import { getContacts } from './getAndDeleteContacts.js';
 const BASE_URL = "http://localhost:9092/data_wharehose/v1/";
 
+/**
+ * Global Variables
+ */
 const createButton = document.querySelector(".create");
 const selectCompany = document.querySelector("#company");
 const selectRegion = document.querySelector("#region");
@@ -9,7 +12,9 @@ const selectCountry = document.querySelector("#country");
 const selectCity = document.querySelector("#city");
 const interestRange = document.querySelector('.interest-range');
 const interestSelect = document.getElementById('interest-select');
-
+/**
+ * Events
+ */
 createButton.addEventListener('click', createContact);
 selectCompany.addEventListener('click', getCompanies);
 selectRegion.addEventListener('click', getRegions);
@@ -18,19 +23,9 @@ selectCountry.addEventListener('change', getCities);
 selectCity.addEventListener('change', enableAddress);
 interestRange.addEventListener('mousemove', updateSelect)
 interestSelect.addEventListener('change', updateRange)
-
 $('#new-contact').on('hide.bs.modal', () => { document.getElementById("new-contact-form").reset() });
 $('#new-contact').on('hide.bs.modal', disable);
 
-function updateSelect() {
-    const newValue = interestRange.value;
-    interestSelect.value = newValue;
-}
-
-function updateRange() {
-    const newValue = interestSelect.value;
-    interestRange.value = newValue;
-}
 
 /**
  * @method getCompanies
@@ -125,7 +120,10 @@ function optionssMarkUp(id, name) {
     );
 }
 
-
+/**
+ * @method enableAddress
+ * @description Method to enable address input 
+ */
 function enableAddress() {
     document.getElementById('address').disabled = false;
 }
@@ -153,6 +151,11 @@ function createContact() {
     }).catch((error) => { console.log(error) });
 }
 
+/**
+ * @method getContactData
+ * @description Method to get current contact information
+ * @return {object} contactData
+ */
 function getContactData() {
     const contactData = {
         'name': document.querySelector("#name").value,
@@ -188,7 +191,28 @@ function getContactData() {
     return contactData;
 }
 
+/**
+ * @method updateSelect
+ * @description Update interest select value
+ */
+function updateSelect() {
+    const newValue = interestRange.value;
+    interestSelect.value = newValue;
+}
 
+/**
+ * @method updateSelect
+ * @description Update interest bar range value
+ */
+function updateRange() {
+    const newValue = interestSelect.value;
+    interestRange.value = newValue;
+}
+
+/**
+ * @method disable
+ * @description Disable country, city and address input after close create-modal
+ */
 function disable() {
     selectCountry.disabled = true;
     selectCity.disabled = true;

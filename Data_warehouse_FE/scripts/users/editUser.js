@@ -2,6 +2,9 @@ import { apiRequest } from '../services.js';
 import { getUsers } from './getAndDeleteUsers.js';
 const BASE_URL = "http://localhost:9092/data_wharehose/v1/";
 
+/**
+ * Global Variables
+ */
 const updateButton = document.querySelector(".update-button");
 let name = document.querySelector("#edit-name");
 let lastname = document.querySelector("#edit-lastname");
@@ -11,10 +14,17 @@ let password = document.querySelector("#edit-password");
 let repeatPassword = document.querySelector("#edit-repeat-password");
 let userID;
 
+/**
+ * Events
+ */
 updateButton.addEventListener('click', updateUser);
-
 $('#edit-user').on('hide.bs.modal', () => { document.getElementById("edit-user-form").reset() });
 
+/**
+ * @method editUser
+ * @description Method to edit user 
+ * @param {object} e Event Information
+ */
 async function editUser(e) {
     userID = e.currentTarget.getAttribute('data-id');
     const userCurrentData = await getUserData(userID);
@@ -24,7 +34,11 @@ async function editUser(e) {
     fillModal(userCurrentData);
 }
 
-
+/**
+ * @method getUserData
+ * @description Method to get current user information
+ * @param {string} userID
+ */
 async function getUserData(userID) {
     try {
         const requestInfo = {
@@ -37,7 +51,11 @@ async function getUserData(userID) {
     }
 }
 
-
+/**
+ * @method fillModal
+ * @description Method to fill edit-modal with current user information
+ * @param {object} userCurrentData
+ */
 function fillModal(userCurrentData) {
     name.value = userCurrentData.name;
     lastname.value = userCurrentData.lastname;
@@ -45,6 +63,10 @@ function fillModal(userCurrentData) {
     isAdmin.value = userCurrentData.isAdmin;
 }
 
+/**
+ * @method updateUser
+ * @description Method to update user information
+ */
 function updateUser() {
     const newUserData = {
         "name": name.value,
