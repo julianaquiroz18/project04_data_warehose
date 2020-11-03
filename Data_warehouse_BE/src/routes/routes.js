@@ -144,7 +144,7 @@ router.get("/contacts", jwtExtract, verifyToken, async(req, res) => {
  * Get Contact by ID
  */
 router.get("/contacts/:contactID", jwtExtract, verifyToken, async(req, res) => {
-    const contact = await Contact.findById(req.params.contactID).exec();
+    const contact = await Contact.findById(req.params.contactID).populate({ path: "city", select: ['name'], populate: { path: "country", select: ['name'], populate: { path: "region", select: ['name'] } } }).exec();
     res.status(200).json(contact);
 });
 

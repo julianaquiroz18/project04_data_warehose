@@ -20,6 +20,7 @@ interestRange.addEventListener('mousemove', updateSelect)
 interestSelect.addEventListener('change', updateRange)
 
 $('#new-contact').on('hide.bs.modal', () => { document.getElementById("new-contact-form").reset() });
+$('#new-contact').on('hide.bs.modal', disable);
 
 function updateSelect() {
     const newValue = interestRange.value;
@@ -39,8 +40,8 @@ function getCompanies() {
     const requestInfo = {
         headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
     }
-    const companuesList = apiRequest(`${BASE_URL}companies`, requestInfo);
-    companuesList.then((response) => {
+    const companiesList = apiRequest(`${BASE_URL}companies`, requestInfo);
+    companiesList.then((response) => {
         console.log(response);
         selectCompany.innerHTML = "<option selected>Seleccionar compañía</option>";
         fillOptions(response, selectCompany);
@@ -103,12 +104,12 @@ function getCities() {
  * @param {array} infoList
  */
 function fillOptions(infoList, node) {
-    const regionHTML = infoList.map(region => {
+    const nodeHTML = infoList.map(region => {
         const id = region._id;
         const name = region.name;
         return optionssMarkUp(id, name);
     });
-    node.innerHTML += regionHTML.join("\n");
+    node.innerHTML += nodeHTML.join("\n");
 }
 
 /**
@@ -185,4 +186,11 @@ function getContactData() {
         ]
     };
     return contactData;
+}
+
+
+function disable() {
+    selectCountry.disabled = true;
+    selectCity.disabled = true;
+    document.getElementById('address').disabled = true;
 }

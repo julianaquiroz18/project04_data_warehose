@@ -29,10 +29,16 @@ let preferences4 = document.querySelector("#edit-preferences-4");
 let contactID;
 
 updateButton.addEventListener('click', updateContact);
-interestRange.addEventListener('mousemove', updateSelect)
-interestSelect.addEventListener('change', updateRange)
+interestRange.addEventListener('mousemove', updateSelect);
+interestSelect.addEventListener('change', updateRange);
+
+region.addEventListener('change', getCountries);
+country.addEventListener('change', getCities);
+city.addEventListener('change', enableAddress);
 
 $('#edit-contact').on('hide.bs.modal', () => { document.getElementById("edit-contact-form").reset() });
+$('#edit-contact').on('hide.bs.modal', main);
+
 
 async function editContact(e) {
     contactID = e.currentTarget.getAttribute('data-id');
@@ -40,7 +46,6 @@ async function editContact(e) {
     if (contactCurrentData instanceof Error) {
         console.log(contactCurrentData);
     }
-    console.log(contactCurrentData);
     fillModal(contactCurrentData);
 }
 
@@ -64,9 +69,9 @@ function fillModal(contactCurrentData) {
     position.value = contactCurrentData.position;
     email.value = contactCurrentData.email;
     company.value = contactCurrentData.company;
-    region.value = contactCurrentData.region;
-    country.value = contactCurrentData.country;
-    city.value = contactCurrentData.city;
+    region.value = contactCurrentData.city.country.region._id;
+    country.value = contactCurrentData.city.country._id;
+    city.value = contactCurrentData.city._id;
     address.value = contactCurrentData.address;
     interestSelect.value = contactCurrentData.interest;
     interestRange.value = contactCurrentData.interest;
@@ -89,10 +94,34 @@ function fillModal(contactCurrentData) {
 function updateContact() {
     const newContactData = {
         "name": name.value,
-        "address": address.value,
+        "lastname": lastname.value,
+        "position": position.value,
         "email": email.value,
-        "telephone": telephone.value,
-        "city": city.value
+        "company": company.value,
+        "city": city.value,
+        'address': address.value,
+        'interest': Number(interestSelect.value),
+        'contactChannel': [{
+                'contactChannel': contactChannel1.value,
+                'userAcount': userAcount1.value,
+                'preferences': preferences1.value
+            },
+            {
+                'contactChannel': contactChannel2.value,
+                'userAcount': userAcount2.value,
+                'preferences': preferences2.value
+            },
+            {
+                'contactChannel': contactChannel3.value,
+                'userAcount': userAcount3.value,
+                'preferences': preferences3.value
+            },
+            {
+                'contactChannel': contactChannel4.value,
+                'userAcount': userAcount4.value,
+                'preferences': preferences4.value
+            }
+        ]
     };
 
     const requestInfo = {
@@ -122,55 +151,153 @@ function updateRange() {
 
 }
 
-// //Methods to fill city select options in edit modal
+//Methods to active fields if any change
+
+/**
+ * @method getCountries
+ * @description Method to get countries for a specific region from API
+ */
+function getCountries() {
+    country.disabled = false;
+    country.value = null;
+    city.value = null;
+    address.value = null;
+    const requestInfo = {
+        headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
+    }
+    const countryList = apiRequest(`${BASE_URL}countries/${region.value}`, requestInfo);
+    countryList.then((response) => {
+        console.log(response);
+        country.innerHTML = "<option selected>Seleccionar país</option>";
+        fillOptions(response.countries, country);
+    }).catch((error) => { console.log(error) });
+}
+
+/**
+ * @method getCities
+ * @description Method to get cities for a specific country from API
+ */
+function getCities() {
+    city.disabled = false;
+    const requestInfo = {
+        headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
+    }
+    const citiesList = apiRequest(`${BASE_URL}cities/${country.value}`, requestInfo);
+    citiesList.then((response) => {
+        console.log(response);
+        city.innerHTML = "<option selected>Seleccionar ciudad</option>";
+        fillOptions(response.cities, city);
+    }).catch((error) => { console.log(error) });
+}
+
+function enableAddress() {
+    address.disabled = false;
+}
 
 
-// /**
-//  * @method getCities
-//  * @description Method to get cities from API
-//  */
-// async function getCities() {
-//     const requestInfo = {
-//         headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
-//     }
-//     const citiesList = apiRequest(`${BASE_URL}cities`, requestInfo);
-//     citiesList.then((response) => {
-//         city.innerHTML = "<option selected>Seleccionar ciudad</option>";
-//         fillCities(response);
-//     }).catch((error) => { console.log(error) });
-// }
+// //Methods to fill select options in edit modal with current contact information
 
-// /**
-//  * @method fillCities
-//  * @description Get city data and create rows
-//  * @param {array} companiesList
-//  */
-// function fillCities(companiesList) {
-//     const cityHTML = companiesList.map(city => {
-//         const id = city._id;
-//         const name = city.name;
-//         return citiiesMarkUp(id, name);
-//     });
-//     city.innerHTML += cityHTML.join("\n");
-// }
+/**
+ * @method fillCompanies
+ * @description Method to get Companies from API
+ */
+function fillCompanies() {
+    const requestInfo = {
+        headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
+    }
+    const companiesList = apiRequest(`${BASE_URL}companies`, requestInfo);
+    companiesList.then((response) => {
+        console.log(response);
+        company.innerHTML = "<option selected>Seleccionar compañía</option>";
+        fillOptions(response, company);
+    }).catch((error) => { console.log(error) });
+}
 
-// /**
-//  * @method citiiesMarkUp
-//  * @description Cities marking method
-//  * @param {string} id
-//  * @param {string} name
-//  * @return {string}
-//  */
-// function citiiesMarkUp(id, name) {
-//     return (
-//         `<option value="${id}">${name}</option>`
-//     );
-// }
+/**
+ * @method fillRegions
+ * @description Method to get regions from API
+ */
+function fillRegions() {
+    const requestInfo = {
+        headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
+    }
+    const regionsList = apiRequest(`${BASE_URL}regions`, requestInfo);
+    regionsList.then((response) => {
+        console.log(response);
+        region.innerHTML = "<option selected>Seleccionar región</option>";
+        fillOptions(response, region);
+    }).catch((error) => { console.log(error) });
+}
 
-// getCities();
+/**
+ * @method fillCountries
+ * @description Method to get countries for a specific region from API
+ */
+function fillCountries() {
+    const requestInfo = {
+        headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
+    }
+    const countryList = apiRequest(`${BASE_URL}countries`, requestInfo);
+    countryList.then((response) => {
+        console.log(response);
+        country.innerHTML = "<option selected>Seleccionar país</option>";
+        fillOptions(response, country);
+    }).catch((error) => { console.log(error) });
+}
 
+/**
+ * @method fillCities
+ * @description Method to get cities from API
+ */
+async function fillCities() {
+    const requestInfo = {
+        headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
+    }
+    const citiesList = apiRequest(`${BASE_URL}cities`, requestInfo);
+    citiesList.then((response) => {
+        city.innerHTML = "<option selected>Seleccionar ciudad</option>";
+        fillOptions(response, city);
+    }).catch((error) => { console.log(error) });
+}
 
+/**
+ * @method fillOptions
+ * @description Get regions data and fill select options
+ * @param {array} infoList
+ */
+function fillOptions(infoList, node) {
+    const nodeHTML = infoList.map(region => {
+        const id = region._id;
+        const name = region.name;
+        return optionssMarkUp(id, name);
+    });
+    node.innerHTML += nodeHTML.join("\n");
+}
 
+/**
+ * @method optionssMarkUp
+ * @description Options marking method
+ * @param {string} id
+ * @param {string} name
+ * @return {string}
+ */
+function optionssMarkUp(id, name) {
+    return (
+        `<option value="${id}">${name}</option>`
+    );
+}
+
+function main() {
+    fillCompanies()
+    fillRegions()
+    fillCountries()
+    fillCities()
+    country.disabled = true;
+    city.disabled = true;
+    address.disabled = true;
+}
+
+main()
 
 export {
     editContact
