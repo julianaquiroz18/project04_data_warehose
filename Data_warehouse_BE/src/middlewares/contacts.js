@@ -53,21 +53,29 @@ function getFilterFields(req, res, next) {
     req.filterFields = {
         name: { $regex: '.*' + req.body.name + '.*', $options: 'i' },
         position: { $regex: '.*' + req.body.position + '.*', $options: 'i' },
-        country: req.body.country || { $ne: null },
-        company: req.body.company || { $ne: null },
+        city: req.body.city,
+        company: req.body.company,
         contactChannel: { "$elemMatch": { contactChannel: `${req.body.favoriteChannel}`, preferences: "favorite" } },
-        interest: req.body.interest || { $ne: null }
+        interest: req.body.interest
     };
     if (!req.body.name) {
-        req.filterFields.name = { $ne: null };
+        delete req.filterFields.name;
     }
     if (!req.body.position) {
-        req.filterFields.position = { $ne: null };
+        delete req.filterFields.position;
     }
-    if (!req.body.favoriteChannel) {
-        req.filterFields.contactChannel = { $ne: null };
+    if (!req.body.city || req.body.city === "null") {
+        delete req.filterFields.city;
     }
-
+    if (!req.body.company || req.body.company === "null") {
+        delete req.filterFields.company;
+    }
+    if (!req.body.favoriteChannel || req.body.favoriteChannel === "null") {
+        delete req.filterFields.contactChannel;
+    }
+    if (!req.body.interest || req.body.interest === "null") {
+        delete req.filterFields.interest;
+    }
     next();
 };
 

@@ -228,6 +228,8 @@ function deleteOneContact(e) {
     const deletedContact = apiRequest(`${BASE_URL}contacts/${contactID}`, requestInfo);
     deletedContact.then((response) => {
         console.log(response);
+        contactsIDArray = [];
+        updateContactsUI();
         getContacts();
     }).catch((error) => { console.log(error) });
 }
@@ -246,6 +248,8 @@ function deleteContacts() {
         const deletedContact = apiRequest(`${BASE_URL}contacts/${contactID}`, requestInfo);
         deletedContact.then((response) => {
             console.log(response);
+            contactsIDArray = [];
+            updateContactsUI();
             getContacts();
         }).catch((error) => { console.log(error) });
     });
@@ -255,6 +259,7 @@ getContacts();
 
 export {
 
-    getContacts
+    getContacts,
+    fillContactsInfo
 
 };

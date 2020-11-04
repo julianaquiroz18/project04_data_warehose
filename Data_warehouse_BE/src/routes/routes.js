@@ -152,8 +152,9 @@ router.get("/contacts/:contactID", jwtExtract, verifyToken, async(req, res) => {
 /**
  * Get contacts filtered
  */
-router.get("/contacts/filter", jwtExtract, verifyToken, getFilterFields, async(req, res) => {
-    const contactsList = await Contact.find(req.filterFields).exec();
+router.post("/contacts-filter", jwtExtract, verifyToken, getFilterFields, async(req, res) => {
+    console.log(req.filterFields)
+    const contactsList = await Contact.find(req.filterFields).populate("company", ['name']).populate({ path: "city", select: ['name'], populate: { path: "country", select: ['name'], populate: { path: "region", select: ['name'] } } }).exec();
     res.status(200).json(contactsList);
 });
 
