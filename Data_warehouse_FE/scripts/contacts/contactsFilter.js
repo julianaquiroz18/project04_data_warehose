@@ -2,12 +2,18 @@ import { apiRequest } from '../services.js';
 import { fillContactsInfo } from './getAndDeleteContacts.js'
 const BASE_URL = "http://localhost:9092/data_wharehose/v1/";
 
+/**
+ * Global Variables
+ */
 const city = document.querySelector('#city-filter');
 const company = document.querySelector('#company-filter');
 const btnSearch = document.querySelector('.btn-search');
 const filterForm = document.getElementById("filter-form");
 const divFilterForm = document.querySelector(".input-group-append");
 
+/**
+ * Events
+ */
 company.addEventListener('click', fillCompanies);
 city.addEventListener('click', fillCities);
 btnSearch.addEventListener('click', filterContacts);

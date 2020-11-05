@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 function initDatabase() {
 
     mongoose.connect(`mongodb://${HOST}/${DATABASE}`, { useNewUrlParser: true, useUnifiedTopology: true });
-
+    //mongoose.set('debug', true);
     const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'connection error:'));
     db.once('open', function() {

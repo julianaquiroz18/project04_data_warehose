@@ -108,11 +108,15 @@
                 <thead>
                     <tr class="table-bordered">
                         <th class="align-middle" scope="col"><input class="ml-3 all-checkbox" type="checkbox" name="all-users"></th>
-                        <th class="align-middle" scope="col">Contacto <i class="fa fa-sort" aria-hidden="true"></i></th>
-                        <th class="align-middle" scope="col">País/Región <i class="fa fa-sort" aria-hidden="true"></i></th>
-                        <th class="align-middle" scope="col">Compañía <i class="fa fa-sort" aria-hidden="true"></i></th>
-                        <th class="align-middle" scope="col">Cargo <i class="fa fa-sort" aria-hidden="true"></i></th>
-                        <th class="align-middle" scope="col">Interés <i class="fa fa-sort" aria-hidden="true"></i></th>
+                        <th class="align-middle" scope="col">Contacto <button type="button" class="btn btn-link asc-sort" data-field="name" data-index='0'><i class="fa fa-sort" aria-hidden="true"></i></button><button type="button" class="btn btn-link desc-sort d-none" data-field="name" data-index='0'><i class="fa fa-sort" aria-hidden="true"></i></button></th>
+                        <th class="align-middle" scope="col">País/Región <button type="button" class="btn btn-link asc-sort" data-field="country" data-index='1'><i class="fa fa-sort" aria-hidden="true"></i></button><button type="button" class="btn btn-link desc-sort d-none" data-field="country"
+                                data-index='1'><i class="fa fa-sort" aria-hidden="true"></i></button></th>
+                        <th class="align-middle" scope="col">Compañía <button type="button" class="btn btn-link asc-sort" data-field="company" data-index='2'><i class="fa fa-sort" aria-hidden="true"></i></button><button type="button" class="btn btn-link desc-sort d-none" data-field="company"
+                                data-index='2'><i class="fa fa-sort" aria-hidden="true"></i></button></th>
+                        <th class="align-middle" scope="col">Cargo <button type="button" class="btn btn-link asc-sort" data-field="position" data-index='3'><i class="fa fa-sort" aria-hidden="true"></i></button><button type="button" class="btn btn-link desc-sort d-none" data-field="position"
+                                data-index='3'><i class="fa fa-sort" aria-hidden="true"></i></button></th>
+                        <th class="align-middle" scope="col">Interés <button type="button" class="btn btn-link asc-sort" data-field="interest" data-index='4'><i class="fa fa-sort" aria-hidden="true"></i></button><button type="button" class="btn btn-link desc-sort d-none" data-field="interest"
+                                data-index='4'><i class="fa fa-sort" aria-hidden="true"></i></button></th>
                         <th class="align-middle text-center" scope="col">Acciones</th>
                     </tr>
                 </thead>
@@ -538,6 +542,7 @@
     <script type="module" src="../scripts/contacts/contactsFilter.js"></script>
     <script type="module" src="../scripts/contacts/getAndDeleteContacts.js"></script>
     <script type="module" src="../scripts/contacts/createContacts.js"></script>
+    <script type="module" src="../scripts/contacts/contactsSort.js"></script>
 </body>
 
 </html>

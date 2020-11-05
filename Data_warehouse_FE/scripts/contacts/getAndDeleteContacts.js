@@ -106,7 +106,7 @@ function contactsMarkUp(id, name, lastname, email, country, region, company, pos
         <td class="align-middle"><input class="ml-3 contact-checkbox" type="checkbox" name="user-info" data-id="${id}"></td>
         <td class="align-middle">
             <div class="d-flex flex-row align-items-center">
-                <img src="https://i.picsum.photos/id/1027/2848/4272.jpg?hmac=EAR-f6uEqI1iZJjB6-NzoZTnmaX0oI0th3z8Y78UpKM" alt="user pic" class="user-img rounded-circle">
+                <img src="../assets/avatar.png" alt="user pic" class="user-img rounded-circle">
                 <div class="ml-2">
                     <p>${name} ${lastname}</p>
                     <p class="email-table text-black-50">${email}</p>

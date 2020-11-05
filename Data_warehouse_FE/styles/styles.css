@@ -10962,6 +10962,11 @@ body {
   color: #1D72C2;
 }
 
+.btn-link {
+  color: black;
+  padding: 5px;
+}
+
 .table-hover tbody tr:hover td,
 .table-hover tbody tr:hover th {
   background-color: #E8E8E8;

@@ -140,6 +140,63 @@ router.get("/contacts", jwtExtract, verifyToken, async(req, res) => {
     res.status(200).json(contactsList);
 });
 
+
+// /**
+//  * Sort contacts list 
+//  */
+// router.get("/contacts-sort", jwtExtract, verifyToken, async(req, res) => {
+//     const sort = req.query.sort;
+//     const field = req.query.field;
+//     const contactsSortedList = await Contact.find()
+//         .populate("company", ['name'])
+//         .populate({ path: "city", select: ['name'], populate: { path: "country", select: ['name'], populate: { path: "region", select: ['name'] } } })
+//         .sort({
+//             [field]: sort
+//         })
+//         .exec();
+//     res.status(200).json(contactsSortedList);
+// });
+
+/**
+ * Sort contacts list 
+ */
+router.get("/contacts-sort", jwtExtract, verifyToken, async(req, res) => {
+    const sort = req.query.sort;
+    const field = req.query.field;
+    const factor = sort === 'asc' ? 1 : -1;
+    const contactsSortedList = await Contact.find()
+        .populate("company", ['name'])
+        .populate({ path: "city", select: ['name'], populate: { path: "country", select: ['name'], populate: { path: "region", select: ['name'] } } })
+        .sort({
+            [field]: sort
+        })
+        .exec();
+    if (field === 'company' || field === 'country') {
+        contactsSortedList.sort((contact1, contact2) => {
+            let nombre1;
+            let nombre2;
+            if (field === 'company') {
+                nombre1 = contact1.company.name.substring(0, 3);
+                nombre2 = contact2.company.name.substring(0, 3);
+            } else {
+                nombre1 = contact1.city.country.name.substring(0, 3);
+                nombre2 = contact2.city.country.name.substring(0, 3);
+            }
+            if (nombre1 > nombre2) {
+                return factor
+            }
+            if (nombre1 < nombre2) {
+                return -1 * factor
+            }
+            return 0
+        })
+    }
+    res.status(200).json(contactsSortedList);
+});
+
+
+
+
 /**
  * Get Contact by ID
  */
