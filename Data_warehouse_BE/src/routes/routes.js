@@ -173,19 +173,19 @@ router.get("/contacts-sort", jwtExtract, verifyToken, async(req, res) => {
         .exec();
     if (field === 'company' || field === 'country') {
         contactsSortedList.sort((contact1, contact2) => {
-            let nombre1;
-            let nombre2;
+            let name1;
+            let name2;
             if (field === 'company') {
-                nombre1 = contact1.company.name.substring(0, 3);
-                nombre2 = contact2.company.name.substring(0, 3);
+                name1 = contact1.company.name.substring(0, 3);
+                name2 = contact2.company.name.substring(0, 3);
             } else {
-                nombre1 = contact1.city.country.name.substring(0, 3);
-                nombre2 = contact2.city.country.name.substring(0, 3);
+                name1 = contact1.city.country.name.substring(0, 3);
+                name2 = contact2.city.country.name.substring(0, 3);
             }
-            if (nombre1 > nombre2) {
+            if (name1 > name2) {
                 return factor
             }
-            if (nombre1 < nombre2) {
+            if (name1 < name2) {
                 return -1 * factor
             }
             return 0
