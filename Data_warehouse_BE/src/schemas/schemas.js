@@ -63,9 +63,9 @@ const regionSchema = {
 
 const countrySchema = {
     type: 'object',
-    required: ['regionID', 'name'],
+    required: ['region', 'name'],
     properties: {
-        regionID: { type: 'string' },
+        region: { type: 'string' },
         name: { type: 'string' },
         cities: { type: 'array' }
     }
@@ -73,9 +73,9 @@ const countrySchema = {
 
 const citySchema = {
     type: 'object',
-    required: ['countryID', 'name'],
+    required: ['country', 'name'],
     properties: {
-        countryID: { type: 'string' },
+        country: { type: 'string' },
         name: { type: 'string' }
     }
 }

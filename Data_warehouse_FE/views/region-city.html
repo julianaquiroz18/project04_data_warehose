@@ -29,105 +29,141 @@
     <main class="px-4 pt-1">
         <div class="d-flex flex-row justify-content-between align-items-center mt-5 mb-3 ">
             <h4 class="text-primary font-weight-bold">Regiones, Paises y Ciudades</h4>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new-region">Crear región</button>
+            <button type="button" class="btn btn-primary new-region" data-info="regions" data-id="0" data-toggle="modal" data-target="#new-region">Crear región</button>
         </div>
         <div>
-            <ul id="myUL" class="pl-5 list-group list-group-flush">
-                <li class="list-group-item"><span class="caret">Sudamerica</span>
-                    <button type="button" class="btn text-black-50 ellipsis"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                    <button type="button" class="d-none btn btn-lg text-black-50 delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <button type="button" class="d-none btn btn-lg text-black-50 edit" data-id="${id}" data-toggle="modal" data-target="#edit-name"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                    <button type="button" class="d-none btn btn-secondary text-black btn-sm ml-3 new" data-id="${id}" data-toggle="modal" data-target="#new-country">Añadir país</button>
-                    <ul class="nested pl-5 list-group list-group-flush">
-                        <li class="list-group-item"><span class="caret">Argentina</span>
-                            <button type="button" class="btn text-black-50 ellipsis"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                            <button type="button" class="d-none btn btn-lg text-black-50 delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            <button type="button" class="d-none btn btn-lg text-black-50 edit" data-id="${id}" data-toggle="modal" data-target="#edit-name"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                            <button type="button" class="d-none btn btn-secondary text-black btn-sm ml-3 new" data-id="${id}" data-toggle="modal" data-target="#new-city">Añadir ciudad</button>
-                            <ul class="nested pl-5 list-group list-group-flush">
-                                <li class="list-group-item">Buenos Aires
-                                    <button type="button" class="btn text-black-50 ellipsis"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                                    <button type="button" class="d-none btn btn-lg text-black-50 delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    <button type="button" class="d-none btn btn-lg text-black-50 edit" data-id="${id}" data-toggle="modal" data-target="#edit-name"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                </li>
-                                <li class="list-group-item">Pilar
-                                    <button type="button" class="btn text-black-50 ellipsis"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                                    <button type="button" class="d-none btn btn-lg text-black-50 delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    <button type="button" class="d-none btn btn-lg text-black-50 edit" data-id="${id}" data-toggle="modal" data-target="#edit-name"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="list-group-item"><span class="caret">Argentina</span>
-                            <button type="button" class="btn text-black-50 ellipsis"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                            <button type="button" class="d-none btn btn-lg text-black-50 delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            <button type="button" class="d-none btn btn-lg text-black-50 edit" data-id="${id}" data-toggle="modal" data-target="#edit-name"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                            <button type="button" class="d-none btn btn-secondary text-black btn-sm ml-3 new" data-id="${id}" data-toggle="modal" data-target="#new-city">Añadir ciudad</button>
-                            <ul class="nested pl-5 list-group list-group-flush">
-                                <li class="list-group-item">Buenos Aires
-                                    <button type="button" class="btn text-black-50 ellipsis"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                                    <button type="button" class="d-none btn btn-lg text-black-50 delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    <button type="button" class="d-none btn btn-lg text-black-50 edit" data-id="${id}" data-toggle="modal" data-target="#edit-name"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                </li>
-                                <li class="list-group-item">Pilar
-                                    <button type="button" class="btn text-black-50 ellipsis"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                                    <button type="button" class="d-none btn btn-lg text-black-50 delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    <button type="button" class="d-none btn btn-lg text-black-50 edit" data-id="${id}" data-toggle="modal" data-target="#edit-name"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="list-group-item"><span class="caret">Sudamerica</span>
-                    <button type="button" class="btn text-black-50 ellipsis"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                    <button type="button" class="d-none btn btn-lg text-black-50 delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    <button type="button" class="d-none btn btn-lg text-black-50 edit" data-id="${id}" data-toggle="modal" data-target="#edit-name"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                    <button type="button" class="d-none btn btn-secondary text-black btn-sm ml-3 new" data-id="${id}" data-toggle="modal" data-target="#new-country">Añadir país</button>
-                    <ul class="nested pl-5 list-group list-group-flush">
-                        <li class="list-group-item"><span class="caret">Argentina</span>
-                            <button type="button" class="btn text-black-50 ellipsis"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                            <button type="button" class="d-none btn btn-lg text-black-50 delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            <button type="button" class="d-none btn btn-lg text-black-50 edit" data-id="${id}" data-toggle="modal" data-target="#edit-name"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                            <button type="button" class="d-none btn btn-secondary text-black btn-sm ml-3 new" data-id="${id}" data-toggle="modal" data-target="#new-city">Añadir ciudad</button>
-                            <ul class="nested pl-5 list-group list-group-flush">
-                                <li class="list-group-item">Buenos Aires
-                                    <button type="button" class="btn text-black-50 ellipsis"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                                    <button type="button" class="d-none btn btn-lg text-black-50 delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    <button type="button" class="d-none btn btn-lg text-black-50 edit" data-id="${id}" data-toggle="modal" data-target="#edit-name"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                </li>
-                                <li class="list-group-item">Pilar
-                                    <button type="button" class="btn text-black-50 ellipsis"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                                    <button type="button" class="d-none btn btn-lg text-black-50 delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    <button type="button" class="d-none btn btn-lg text-black-50 edit" data-id="${id}" data-toggle="modal" data-target="#edit-name"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="list-group-item"><span class="caret">Argentina</span>
-                            <button type="button" class="btn text-black-50 ellipsis"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                            <button type="button" class="d-none btn btn-lg text-black-50 delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            <button type="button" class="d-none btn btn-lg text-black-50 edit" data-id="${id}" data-toggle="modal" data-target="#edit-name"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                            <button type="button" class="d-none btn btn-secondary text-black btn-sm ml-3 new" data-id="${id}" data-toggle="modal" data-target="#new-city">Añadir ciudad</button>
-                            <ul class="nested pl-5 list-group list-group-flush">
-                                <li class="list-group-item">Buenos Aires
-                                    <button type="button" class="btn text-black-50 ellipsis"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                                    <button type="button" class="d-none btn btn-lg text-black-50 delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    <button type="button" class="d-none btn btn-lg text-black-50 edit" data-id="${id}" data-toggle="modal" data-target="#edit-name"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                </li>
-                                <li class="list-group-item">Pilar
-                                    <button type="button" class="btn text-black-50 ellipsis"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></button>
-                                    <button type="button" class="d-none btn btn-lg text-black-50 delete" data-id="${id}"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    <button type="button" class="d-none btn btn-lg text-black-50 edit" data-id="${id}" data-toggle="modal" data-target="#edit-name"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
+            <ul id="myUL" class="pl-5 list-group list-group-flush regions-body">
+
             </ul>
         </div>
     </main>
+    <div class="modal fade" id="new-region" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 mx-3 mt-2 mb-3">
+                    <h3 class="text-primary">Crear región</h3>
+                    <button type="button" class="close text-primary" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form class="col" id="new-region-form">
+                        <label for="region-name">Nombre<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="region-name" name="region-name">
+                    </form>
+                </div>
+                <div class="modal-footer border-top-0 mx-3">
+                    <button type="button" class="btn btn-outline-primary btn-lg modal-button" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary btn-lg modal-button add-region" data-dismiss="modal">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="new-country" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 mx-3 mt-2 mb-3">
+                    <h3 class="text-primary">Crear país</h3>
+                    <button type="button" class="close text-primary" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form class="col" id="new-country-form">
+                        <label for="country-name">Nombre<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="country-name" name="country-name">
+                    </form>
+                </div>
+                <div class="modal-footer border-top-0 mx-3">
+                    <button type="button" class="btn btn-outline-primary btn-lg modal-button" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary btn-lg modal-button add-country" data-dismiss="modal">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="new-city" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 mx-3 mt-2 mb-3">
+                    <h3 class="text-primary">Crear ciudad</h3>
+                    <button type="button" class="close text-primary" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form class="col" id="new-city-form">
+                        <label for="city-name">Nombre<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="city-name" name="city-name">
+                    </form>
+                </div>
+                <div class="modal-footer border-top-0 mx-3">
+                    <button type="button" class="btn btn-outline-primary btn-lg modal-button" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary btn-lg modal-button add-city" data-dismiss="modal">Crear</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade" id="edit-region" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 mx-3 mt-2 mb-3">
+                    <h3 class="text-primary">Actualizar región</h3>
+                    <button type="button" class="close text-primary" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form class="col" id="edit-region-form">
+                        <label for="edit-region-name">Nombre<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="edit-region-name" name="edit-region-name">
+                    </form>
+                </div>
+                <div class="modal-footer border-top-0 mx-3">
+                    <button type="button" class="btn btn-outline-primary btn-lg modal-button" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary btn-lg modal-button update-region" data-dismiss="modal">Actualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="edit-country" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 mx-3 mt-2 mb-3">
+                    <h3 class="text-primary">Actualizar país</h3>
+                    <button type="button" class="close text-primary" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form class="col" id="edit-country-form">
+                        <label for="edit-country-name">Nombre<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="edit-country-name" name="edit-country-name">
+                    </form>
+                </div>
+                <div class="modal-footer border-top-0 mx-3">
+                    <button type="button" class="btn btn-outline-primary btn-lg modal-button" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary btn-lg modal-button update-country" data-dismiss="modal">Actualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="edit-city" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 mx-3 mt-2 mb-3">
+                    <h3 class="text-primary">Actualizar ciudad</h3>
+                    <button type="button" class="close text-primary" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form class="col" id="edit-city-form">
+                        <label for="edit-city-name">Nombre<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="edit-city-name" name="edit-city-name">
+                    </form>
+                </div>
+                <div class="modal-footer border-top-0 mx-3">
+                    <button type="button" class="btn btn-outline-primary btn-lg modal-button" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary btn-lg modal-button update-city" data-dismiss="modal">Actualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    <script src="../scripts/regionCity/regionCity.js"></script>
+    <script type="module" src="../scripts/regionCity/regionCity.js"></script>
 </body>
 
 </html>

@@ -141,22 +141,6 @@ router.get("/contacts", jwtExtract, verifyToken, async(req, res) => {
 });
 
 
-// /**
-//  * Sort contacts list 
-//  */
-// router.get("/contacts-sort", jwtExtract, verifyToken, async(req, res) => {
-//     const sort = req.query.sort;
-//     const field = req.query.field;
-//     const contactsSortedList = await Contact.find()
-//         .populate("company", ['name'])
-//         .populate({ path: "city", select: ['name'], populate: { path: "country", select: ['name'], populate: { path: "region", select: ['name'] } } })
-//         .sort({
-//             [field]: sort
-//         })
-//         .exec();
-//     res.status(200).json(contactsSortedList);
-// });
-
 /**
  * Sort contacts list 
  */
@@ -254,7 +238,7 @@ router.post("/regions", jwtExtract, verifyToken, validate({ body: regionSchema }
 });
 
 router.post("/countries", jwtExtract, verifyToken, validate({ body: countrySchema }), checkCountry, async(req, res) => {
-    const region = await Region.findById(req.body.regionID).exec();
+    const region = await Region.findById(req.body.region).exec();
     const newCountry = new Country(req.body);
     await newCountry.save();
     region.countries.push(newCountry);
@@ -263,7 +247,7 @@ router.post("/countries", jwtExtract, verifyToken, validate({ body: countrySchem
 });
 
 router.post("/cities", jwtExtract, verifyToken, validate({ body: citySchema }), checkCity, async(req, res) => {
-    const country = await Country.findById(req.body.countryID).exec();
+    const country = await Country.findById(req.body.country).exec();
     const newCity = new City(req.body);
     await newCity.save();
     country.cities.push(newCity);
@@ -326,17 +310,17 @@ router.delete("/cities/:cityID", jwtExtract, verifyToken, checkCityID, async(req
 /**
  * Update
  */
-router.put("/regions/:regionID", jwtExtract, verifyToken, checkRegionID, validate({ body: regionSchema }), checkRegionToUpdate, async(req, res) => {
+router.put("/regions/:regionID", jwtExtract, verifyToken, checkRegionID, checkRegionToUpdate, async(req, res) => {
     await Region.updateOne({ _id: req.params.regionID }, req.body);
     res.status(200).json({ message: "Region information was updated" });
 });
 
-router.put("/countries/:countryID", jwtExtract, verifyToken, checkCountryID, validate({ body: countrySchema }), checkCountryToUpdate, async(req, res) => {
+router.put("/countries/:countryID", jwtExtract, verifyToken, checkCountryID, checkCountryToUpdate, async(req, res) => {
     await Country.updateOne({ _id: req.params.countryID }, req.body);
     res.status(200).json({ message: "Country information was updated" });
 });
 
-router.put("/cities/:cityID", jwtExtract, verifyToken, checkCityID, validate({ body: citySchema }), checkCityToUpdate, async(req, res) => {
+router.put("/cities/:cityID", jwtExtract, verifyToken, checkCityID, checkCityToUpdate, async(req, res) => {
     await City.updateOne({ _id: req.params.cityID }, req.body);
     res.status(200).json({ message: "City information was updated" });
 });
