@@ -154,7 +154,7 @@ function updateContact() {
     };
     const login = apiRequest(`${BASE_URL}contacts/${contactID}`, requestInfo);
     login.then(json => {
-        console.log(json);
+        swal("", json.message, "success");
         getContacts();
     }).catch((error) => { console.log(error) });
 
@@ -195,7 +195,6 @@ function getCountries() {
     }
     const countryList = apiRequest(`${BASE_URL}countries/${region.value}`, requestInfo);
     countryList.then((response) => {
-        console.log(response);
         country.innerHTML = "<option selected>Seleccionar país</option>";
         fillOptions(response.countries, country);
     }).catch((error) => { console.log(error) });
@@ -212,7 +211,6 @@ function getCities() {
     }
     const citiesList = apiRequest(`${BASE_URL}cities/${country.value}`, requestInfo);
     citiesList.then((response) => {
-        console.log(response);
         city.innerHTML = "<option selected>Seleccionar ciudad</option>";
         fillOptions(response.cities, city);
     }).catch((error) => { console.log(error) });
@@ -239,7 +237,6 @@ function fillCompanies() {
     }
     const companiesList = apiRequest(`${BASE_URL}companies`, requestInfo);
     companiesList.then((response) => {
-        console.log(response);
         company.innerHTML = "<option selected>Seleccionar compañía</option>";
         fillOptions(response, company);
     }).catch((error) => { console.log(error) });
@@ -255,7 +252,6 @@ function fillRegions() {
     }
     const regionsList = apiRequest(`${BASE_URL}regions`, requestInfo);
     regionsList.then((response) => {
-        console.log(response);
         region.innerHTML = "<option selected>Seleccionar región</option>";
         fillOptions(response, region);
     }).catch((error) => { console.log(error) });
@@ -271,7 +267,6 @@ function fillCountries() {
     }
     const countryList = apiRequest(`${BASE_URL}countries`, requestInfo);
     countryList.then((response) => {
-        console.log(response);
         country.innerHTML = "<option selected>Seleccionar país</option>";
         fillOptions(response, country);
     }).catch((error) => { console.log(error) });

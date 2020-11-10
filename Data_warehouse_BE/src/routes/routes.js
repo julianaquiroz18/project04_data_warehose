@@ -20,7 +20,7 @@ const { jwtGenerator, jwtExtract, verifyToken } = require('../middlewares/jwt');
 /**
  * Schema validator
  */
-const { registerSchema, updateRegisterSchema, companySchema, contactSchema, regionSchema, countrySchema, citySchema } = require('../schemas/schemas');
+const { registerSchema, updateRegisterSchema, companySchema, contactSchema, regionSchema, countrySchema, citySchema, nameSchema } = require('../schemas/schemas');
 const { Validator } = require('express-json-validator-middleware');
 const validator = new Validator({ allErrors: true });
 const validate = validator.validate;
@@ -33,7 +33,8 @@ const validate = validator.validate;
 router.post("/users/login", login, jwtGenerator, (req, res) => {
     res.status(200).json({
         message: "Successful login",
-        token: req.token
+        token: req.token,
+        isAdmin: req.userInfo.isAdmin
     });
 });
 
@@ -259,17 +260,17 @@ router.post("/cities", jwtExtract, verifyToken, validate({ body: citySchema }), 
  * Get
  */
 router.get("/regions", jwtExtract, verifyToken, async(req, res) => {
-    const regionsList = await Region.find({}, ['name']).populate({ path: 'countries', select: ['name'], populate: { path: 'cities', select: ['name'] } }).exec();
+    const regionsList = await Region.find({}, ['name']).sort({ name: "asc" }).populate({ path: 'countries', select: ['name'], populate: { path: 'cities', select: ['name'] } }).exec();
     res.status(200).json(regionsList);
 });
 
 router.get("/countries", jwtExtract, verifyToken, async(req, res) => {
-    const countriesList = await Country.find({}, ['name']).populate('cities', ['name']).exec();
+    const countriesList = await Country.find({}, ['name']).sort({ name: "asc" }).populate('cities', ['name']).exec();
     res.status(200).json(countriesList);
 });
 
 router.get("/cities", jwtExtract, verifyToken, async(req, res) => {
-    const citiesList = await City.find({}, ['name']);
+    const citiesList = await City.find({}, ['name']).sort({ name: "asc" }).exec();
     res.status(200).json(citiesList);
 });
 
@@ -277,7 +278,7 @@ router.get("/cities", jwtExtract, verifyToken, async(req, res) => {
  * Get countries from a specific region
  */
 router.get("/countries/:regionID", jwtExtract, verifyToken, async(req, res) => {
-    const countriesList = await Region.findById(req.params.regionID, ['name']).populate('countries', ['name']).exec();
+    const countriesList = await Region.findById(req.params.regionID, ['name']).sort({ name: "asc" }).populate('countries', ['name']).exec();
     res.status(200).json(countriesList);
 });
 
@@ -285,7 +286,7 @@ router.get("/countries/:regionID", jwtExtract, verifyToken, async(req, res) => {
  * Get cities from a specific country
  */
 router.get("/cities/:countryID", jwtExtract, verifyToken, async(req, res) => {
-    const citiesList = await Country.findById(req.params.countryID, ['name']).populate('cities', ['name']).exec();
+    const citiesList = await Country.findById(req.params.countryID, ['name']).sort({ name: "asc" }).populate('cities', ['name']).exec();
     res.status(200).json(citiesList);
 });
 
@@ -310,17 +311,17 @@ router.delete("/cities/:cityID", jwtExtract, verifyToken, checkCityID, async(req
 /**
  * Update
  */
-router.put("/regions/:regionID", jwtExtract, verifyToken, checkRegionID, checkRegionToUpdate, async(req, res) => {
+router.put("/regions/:regionID", jwtExtract, verifyToken, checkRegionID, validate({ body: nameSchema }), checkRegionToUpdate, async(req, res) => {
     await Region.updateOne({ _id: req.params.regionID }, req.body);
     res.status(200).json({ message: "Region information was updated" });
 });
 
-router.put("/countries/:countryID", jwtExtract, verifyToken, checkCountryID, checkCountryToUpdate, async(req, res) => {
+router.put("/countries/:countryID", jwtExtract, verifyToken, checkCountryID, validate({ body: nameSchema }), checkCountryToUpdate, async(req, res) => {
     await Country.updateOne({ _id: req.params.countryID }, req.body);
     res.status(200).json({ message: "Country information was updated" });
 });
 
-router.put("/cities/:cityID", jwtExtract, verifyToken, checkCityID, checkCityToUpdate, async(req, res) => {
+router.put("/cities/:cityID", jwtExtract, verifyToken, checkCityID, validate({ body: nameSchema }), checkCityToUpdate, async(req, res) => {
     await City.updateOne({ _id: req.params.cityID }, req.body);
     res.status(200).json({ message: "City information was updated" });
 });

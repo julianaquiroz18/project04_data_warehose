@@ -70,7 +70,7 @@
                         <div class="form-group">
                             <label for="profile">Perfil<span class="text-danger">*</span></label>
                             <select class="form-control" name="isAdmin" id="profile">
-                                <option selected>Seleccionar perfil de usuario</option>
+                                <option selected disabled value="">Seleccionar perfil de usuario</option>
                                 <option value="true">Administrador</option>
                                 <option value="false">Usuario</option> 
                             </select>
@@ -82,6 +82,9 @@
                         <div class="form-group">
                             <label for="repeat-password">Repetir contraseña<span class="text-danger">*</span></label>
                             <input type="password" class="form-control" id="repeat-password" name="repeatPassword">
+                        </div>
+                        <div class="form-group form-row mt-4 mb-0">
+                            <label class="col-form-label col-form-label-sm"><span class="text-danger">*</span>Información requerida</label>
                         </div>
                     </form>
                 </div>
@@ -116,7 +119,7 @@
                         <div class="form-group">
                             <label for="profile">Perfil<span class="text-danger">*</span></label>
                             <select class="form-control" name="isAdmin" id="edit-profile">
-                                <option selected>Seleccionar perfil de usuario</option>
+                                <option selected disabled>Seleccionar perfil de usuario</option>
                                 <option value="true">Administrador</option>
                                 <option value="false">Usuario</option> 
                             </select>
@@ -128,6 +131,9 @@
                         <div class="form-group">
                             <label for="repeat-password">Repetir contraseña</label>
                             <input type="password" class="form-control" id="edit-repeat-password" name="repeatPassword">
+                        </div>
+                        <div class="form-group form-row mt-4 mb-0">
+                            <label class="col-form-label col-form-label-sm"><span class="text-danger">*</span>Información requerida</label>
                         </div>
                     </form>
                 </div>
@@ -141,6 +147,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="module" src="../scripts/users/getAndDeleteUsers.js"></script>
     <script type="module" src="../scripts/users/createUser.js"></script>
 </body>

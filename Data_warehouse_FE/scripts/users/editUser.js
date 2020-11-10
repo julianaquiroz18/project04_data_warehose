@@ -89,7 +89,7 @@ function updateUser() {
     }
     const login = apiRequest(`${BASE_URL}users/${userID}`, requestInfo);
     login.then(json => {
-        console.log(json);
+        swal("", json.message, "success");
         getUsers();
     }).catch((error) => { console.log(error) });
 

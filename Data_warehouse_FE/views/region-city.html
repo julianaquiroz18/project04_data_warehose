@@ -21,7 +21,7 @@
             <div class="navbar-nav">
                 <a class="nav-link mx-1" href="./contacts.html">Contactos</a>
                 <a class="nav-link mx-1" href="./companies.html">Compañías</a>
-                <a class="nav-link mx-1" href="./users.html">Usuarios</a>
+                <a class="nav-link mx-1 d-none users-tab" href="./users.html">Usuarios</a>
                 <a class="nav-link mx-1 active" href="#">Región / Ciudad<span class="sr-only">(current)</span></a>
             </div>
         </div>
@@ -48,6 +48,7 @@
                     <form class="col" id="new-region-form">
                         <label for="region-name">Nombre<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="region-name" name="region-name">
+                        <label class="col-form-label col-form-label-sm"><span class="text-danger">*</span>Información requerida</label>
                     </form>
                 </div>
                 <div class="modal-footer border-top-0 mx-3">
@@ -68,6 +69,7 @@
                     <form class="col" id="new-country-form">
                         <label for="country-name">Nombre<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="country-name" name="country-name">
+                        <label class="col-form-label col-form-label-sm"><span class="text-danger">*</span>Información requerida</label>
                     </form>
                 </div>
                 <div class="modal-footer border-top-0 mx-3">
@@ -88,6 +90,7 @@
                     <form class="col" id="new-city-form">
                         <label for="city-name">Nombre<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="city-name" name="city-name">
+                        <label class="col-form-label col-form-label-sm"><span class="text-danger">*</span>Información requerida</label>
                     </form>
                 </div>
                 <div class="modal-footer border-top-0 mx-3">
@@ -111,6 +114,7 @@
                     <form class="col" id="edit-region-form">
                         <label for="edit-region-name">Nombre<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="edit-region-name" name="edit-region-name">
+                        <label class="col-form-label col-form-label-sm"><span class="text-danger">*</span>Información requerida</label>
                     </form>
                 </div>
                 <div class="modal-footer border-top-0 mx-3">
@@ -131,6 +135,7 @@
                     <form class="col" id="edit-country-form">
                         <label for="edit-country-name">Nombre<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="edit-country-name" name="edit-country-name">
+                        <label class="col-form-label col-form-label-sm"><span class="text-danger">*</span>Información requerida</label>
                     </form>
                 </div>
                 <div class="modal-footer border-top-0 mx-3">
@@ -151,6 +156,7 @@
                     <form class="col" id="edit-city-form">
                         <label for="edit-city-name">Nombre<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="edit-city-name" name="edit-city-name">
+                        <label class="col-form-label col-form-label-sm"><span class="text-danger">*</span>Información requerida</label>
                     </form>
                 </div>
                 <div class="modal-footer border-top-0 mx-3">
@@ -161,6 +167,7 @@
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script type="module" src="../scripts/regionCity/regionCity.js"></script>

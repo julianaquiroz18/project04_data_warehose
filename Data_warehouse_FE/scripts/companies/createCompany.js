@@ -25,8 +25,7 @@ function getCities() {
     }
     const citiesList = apiRequest(`${BASE_URL}cities`, requestInfo);
     citiesList.then((response) => {
-        selectCity.innerHTML = `<option selected>Seleccionar ciudad</option>`;
-        console.log(response);
+        selectCity.innerHTML = `<option disabled selected value="0">Seleccionar ciudad</option>`;
         fillCities(response);
     }).catch((error) => { console.log(error) });
 }
@@ -81,7 +80,7 @@ function createCompany() {
     }
     const login = apiRequest(`${BASE_URL}companies`, requestInfo);
     login.then(json => {
-        console.log(`Compania ${json.name} fue creada exitosamente`)
+        swal("", `Compañía ${json.name} fue creada exitosamente`, "success");
         getCompanies();
     }).catch((error) => { console.log(error) });
 }

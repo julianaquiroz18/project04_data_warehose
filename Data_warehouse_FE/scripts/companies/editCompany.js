@@ -35,7 +35,7 @@ async function editCompany(e) {
 }
 
 /**
- * @method citiiegetCompanyDatasMarkUp
+ * @method getCompanyData
  * @description Get current company Information
  * @param {string} companyID
  * @return {object} companyCurrentData
@@ -88,7 +88,7 @@ function updateCompany() {
     };
     const login = apiRequest(`${BASE_URL}companies/${companyID}`, requestInfo);
     login.then(json => {
-        console.log(json);
+        swal("", json.message, "success");
         getCompanies();
     }).catch((error) => { console.log(error) });
 
@@ -108,7 +108,7 @@ async function getCities() {
     }
     const citiesList = apiRequest(`${BASE_URL}cities`, requestInfo);
     citiesList.then((response) => {
-        city.innerHTML = "<option selected>Seleccionar ciudad</option>";
+        city.innerHTML = "<option disabled selected>Seleccionar ciudad</option>";
         fillCities(response);
     }).catch((error) => { console.log(error) });
 }

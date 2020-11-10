@@ -56,7 +56,6 @@ function sortRequest(sort, field) {
 
     const sortContacts = apiRequest(`${BASE_URL}contacts-sort?sort=${sort}&field=${field}`, requestInfo);
     sortContacts.then((response) => {
-        console.log(response);
         document.querySelector(".contacts-body-table").innerHTML = "";
         fillContactsInfo(response);
     }).catch((error) => { console.log(error) });

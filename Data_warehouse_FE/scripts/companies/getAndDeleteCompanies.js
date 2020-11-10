@@ -12,15 +12,26 @@ const companiesBodyTable = document.querySelector(".companies-body-table");
  * @description Method to get companies from API
  */
 function getCompanies() {
+    checkUserProfile();
     companiesBodyTable.innerHTML = "";
     const requestInfo = {
         headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
     }
     const companiesList = apiRequest(`${BASE_URL}companies`, requestInfo);
     companiesList.then((response) => {
-        console.log(response);
         fillCompaniesInfo(response);
     }).catch((error) => { console.log(error) });
+}
+
+/**
+ * @method checkUserProfile
+ * @description Check user profile to show or hide Users tab
+ */
+function checkUserProfile() {
+    const isAdmin = JSON.parse(localStorage.getItem("isAdmin"))
+    if (isAdmin) {
+        document.querySelector(".users-tab").classList.remove('d-none');
+    }
 }
 
 /**
@@ -35,7 +46,7 @@ function fillCompaniesInfo(companiesList) {
         const address = company.address;
         const email = company.email;
         const telephone = company.telephone;
-        const city = company.city.name;
+        const city = (company.city) ? company.city.name : "";
         return companiesMarkUp(id, name, address, email, telephone, city);
     });
     companiesBodyTable.innerHTML += companyHTML.join("\n");
@@ -77,8 +88,6 @@ function companiesMarkUp(id, name, address, email, telephone, city) {
  */
 function deleteCompany(e) {
     const companyID = e.currentTarget.getAttribute('data-id');
-    console.log(e)
-    console.log(companyID)
     const requestInfo = {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
@@ -86,7 +95,7 @@ function deleteCompany(e) {
 
     const deletedCompany = apiRequest(`${BASE_URL}companies/${companyID}`, requestInfo);
     deletedCompany.then((response) => {
-        console.log(response);
+        swal("", response.message, "success");
         getCompanies();
     }).catch((error) => { console.log(error) });
 

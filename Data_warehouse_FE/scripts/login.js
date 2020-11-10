@@ -24,6 +24,7 @@ function login() {
     const login = apiRequest(`${BASE_URL}users/login`, requestInfo);
     login.then(json => {
         localStorage.setItem("token", JSON.stringify(json.token));
+        localStorage.setItem("isAdmin", JSON.stringify(json.isAdmin));
         window.open('../views/contacts.html');
     }).catch((error) => { console.log(error) });
 }

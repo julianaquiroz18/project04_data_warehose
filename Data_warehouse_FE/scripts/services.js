@@ -12,7 +12,11 @@ function apiRequest(URL, requestInfo) {
                 if (response.ok) {
                     resolve(response.json());
                 } else {
-                    response.text().then(text => console.error(text));
+                    response.text().then(text => {
+                        const error = JSON.parse(text);
+                        swal(`Error! ${error.code}`, error.error, "error");
+                        console.error(text);
+                    });
                 };
             })
             .catch(error => { reject(error) })

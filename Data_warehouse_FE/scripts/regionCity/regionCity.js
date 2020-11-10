@@ -39,6 +39,7 @@ $('#edit-city').on('hide.bs.modal', () => { document.getElementById("edit-city-f
  * @description Method to get Region information from API
  */
 function getRegions() {
+    checkUserProfile();
     regionBody.innerHTML = "";
     const requestInfo = {
         headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
@@ -49,6 +50,16 @@ function getRegions() {
     }).catch((error) => { console.log(error) });
 }
 
+/**
+ * @method checkUserProfile
+ * @description Check user profile to show or hide Users tab
+ */
+function checkUserProfile() {
+    const isAdmin = JSON.parse(localStorage.getItem("isAdmin"))
+    if (isAdmin) {
+        document.querySelector(".users-tab").classList.remove('d-none');
+    }
+}
 
 /**
  * @method fillRegionInfo
@@ -303,29 +314,10 @@ function createFunction(e) {
     };
     const login = apiRequest(`${BASE_URL}${requestTo}`, requestInfo);
     login.then(json => {
+        swal("", `${json.name} fue creado exitosamente`, "success");
         getRegions();
     }).catch((error) => { console.log(error) });
 
-}
-
-/**
- * @method deleteOneContact
- * @description Delete only one contact
- * @param {object} e event information
- */
-function deleteOneContact(e) {
-    const contactID = e.currentTarget.getAttribute('data-id');
-    const requestInfo = {
-        method: 'DELETE',
-        headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
-    };
-
-    const deletedContact = apiRequest(`${BASE_URL}contacts/${contactID}`, requestInfo);
-    deletedContact.then((response) => {
-        contactsIDArray = [];
-        updateContactsUI();
-        getContacts();
-    }).catch((error) => { console.log(error) });
 }
 
 /**
@@ -340,6 +332,7 @@ function deleteFunction(e) {
     };
     const deletedRegionCountryOrCity = apiRequest(`${BASE_URL}${requestTo}/${id}`, requestInfo);
     deletedRegionCountryOrCity.then((response) => {
+        swal("", response.message, "success");
         getRegions();
     }).catch((error) => { console.log(error) });
 }

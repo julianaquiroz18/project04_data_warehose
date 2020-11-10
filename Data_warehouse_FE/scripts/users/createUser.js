@@ -37,7 +37,10 @@ function createUser() {
     }
     const login = apiRequest(`${BASE_URL}users`, requestInfo);
     login.then(json => {
-        console.log(`Usuario ${json.name} ${json.lastname} fue creado exitosamente`)
+        swal("", `Usuario ${json.name} ${json.lastname} fue creado exitosamente`, "success");
         getUsers();
-    }).catch((error) => { console.log(error) });
+    }).catch((error) => {
+        console.log(error);
+
+    });
 }

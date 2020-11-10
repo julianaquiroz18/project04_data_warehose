@@ -18,7 +18,6 @@ function getUsers() {
     }
     const usersList = apiRequest(`${BASE_URL}users`, requestInfo);
     usersList.then((response) => {
-        console.log(response);
         fillUsersInfo(response);
     }).catch((error) => { console.log(error) });
 };
@@ -82,7 +81,7 @@ function deleteUser(e) {
 
     const deletedUser = apiRequest(`${BASE_URL}users/${userID}`, requestInfo);
     deletedUser.then((response) => {
-        console.log(response);
+        swal("", response.message, "success");
         getUsers();
     }).catch((error) => { console.log(error) });
 }

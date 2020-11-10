@@ -23,15 +23,26 @@ deleteButtonConfirmation.addEventListener('click', deleteContacts)
  * @description Method to get contacts from API
  */
 function getContacts() {
+    checkUserProfile();
     contactsBodyTable.innerHTML = "";
     const requestInfo = {
         headers: { 'Authorization': `Bearer ${JSON.parse(localStorage.getItem("token"))}` }
     }
     const contactsList = apiRequest(`${BASE_URL}contacts`, requestInfo);
     contactsList.then((response) => {
-        console.log(response);
         fillContactsInfo(response);
     }).catch((error) => { console.log(error) });
+}
+
+/**
+ * @method checkUserProfile
+ * @description Check user profile to show or hide Users tab
+ */
+function checkUserProfile() {
+    const isAdmin = JSON.parse(localStorage.getItem("isAdmin"))
+    if (isAdmin) {
+        document.querySelector(".users-tab").classList.remove('d-none');
+    }
 }
 
 /**
@@ -45,9 +56,9 @@ function fillContactsInfo(contactsList) {
         const name = contact.name;
         const lastname = contact.lastname;
         const email = contact.email;
-        const country = contact.city.country.name;
-        const region = contact.city.country.region.name;
-        const company = contact.company.name;
+        const country = (contact.city) ? contact.city.country.name : "";
+        const region = (contact.city) ? contact.city.country.region.name : "";
+        const company = (contact.company) ? contact.company.name : "";
         const position = contact.position;
         const interest = contact.interest;
         const interestColor = getColor(interest);
@@ -227,7 +238,7 @@ function deleteOneContact(e) {
 
     const deletedContact = apiRequest(`${BASE_URL}contacts/${contactID}`, requestInfo);
     deletedContact.then((response) => {
-        console.log(response);
+        swal("", response.message, "success");
         contactsIDArray = [];
         updateContactsUI();
         getContacts();
@@ -247,7 +258,7 @@ function deleteContacts() {
     contactsIDArray.map(contactID => {
         const deletedContact = apiRequest(`${BASE_URL}contacts/${contactID}`, requestInfo);
         deletedContact.then((response) => {
-            console.log(response);
+            swal("", 'Contacts were deleted', "success");
             contactsIDArray = [];
             updateContactsUI();
             getContacts();

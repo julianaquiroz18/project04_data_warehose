@@ -37,7 +37,6 @@ function fillCompanies() {
     }
     const companiesList = apiRequest(`${BASE_URL}companies`, requestInfo);
     companiesList.then((response) => {
-        console.log(response);
         company.innerHTML = `<option value="null">Todas</option>`;
         fillOptions(response, company);
     }).catch((error) => { console.log(error) });
@@ -53,7 +52,6 @@ function fillCities() {
     }
     const citiesList = apiRequest(`${BASE_URL}cities`, requestInfo);
     citiesList.then((response) => {
-        console.log(response);
         city.innerHTML = `<option value="null">Todos</option>`;
         fillOptions(response, city);
     }).catch((error) => { console.log(error) });
@@ -110,7 +108,6 @@ function filterContacts() {
     }
     const login = apiRequest(`${BASE_URL}contacts-filter`, requestInfo);
     login.then(json => {
-        console.log(json)
         document.querySelector(".contacts-body-table").innerHTML = "";
         fillContactsInfo(json)
     }).catch((error) => { console.log(error) });

@@ -37,8 +37,7 @@ function getCompanies() {
     }
     const companiesList = apiRequest(`${BASE_URL}companies`, requestInfo);
     companiesList.then((response) => {
-        console.log(response);
-        selectCompany.innerHTML = "<option selected>Seleccionar compañía</option>";
+        selectCompany.innerHTML = `<option selected disabled value="0">Seleccionar compañía</option>`;
         fillOptions(response, selectCompany);
     }).catch((error) => { console.log(error) });
 }
@@ -53,8 +52,7 @@ function getRegions() {
     }
     const regionsList = apiRequest(`${BASE_URL}regions`, requestInfo);
     regionsList.then((response) => {
-        console.log(response);
-        selectRegion.innerHTML = "<option selected>Seleccionar región</option>";
+        selectRegion.innerHTML = `<option selected disabled value="0">Seleccionar región</option>`;
         fillOptions(response, selectRegion);
     }).catch((error) => { console.log(error) });
 }
@@ -70,8 +68,7 @@ function getCountries() {
     }
     const countryList = apiRequest(`${BASE_URL}countries/${selectRegion.value}`, requestInfo);
     countryList.then((response) => {
-        console.log(response);
-        selectCountry.innerHTML = "<option selected>Seleccionar país</option>";
+        selectCountry.innerHTML = `<option selected disabled value="0">Seleccionar país</option>`;
         fillOptions(response.countries, selectCountry);
     }).catch((error) => { console.log(error) });
 }
@@ -87,8 +84,7 @@ function getCities() {
     }
     const citiesList = apiRequest(`${BASE_URL}cities/${selectCountry.value}`, requestInfo);
     citiesList.then((response) => {
-        console.log(response);
-        selectCity.innerHTML = "<option selected>Seleccionar ciudad</option>";
+        selectCity.innerHTML = `<option selected disabled value="0">Seleccionar ciudad</option>`;
         fillOptions(response.cities, selectCity);
     }).catch((error) => { console.log(error) });
 }
@@ -135,7 +131,6 @@ function enableAddress() {
  */
 function createContact() {
     const contactData = getContactData();
-    console.log(contactData)
     const requestInfo = {
         method: 'POST',
         body: JSON.stringify(contactData),
@@ -146,7 +141,7 @@ function createContact() {
     }
     const login = apiRequest(`${BASE_URL}contacts`, requestInfo);
     login.then(json => {
-        console.log(`Contact ${json.name} ${json.lastname} fue creado exitosamente`)
+        swal("", `Contacto ${json.name} ${json.lastname} fue creado exitosamente`, "success");
         getContacts();
     }).catch((error) => { console.log(error) });
 }
