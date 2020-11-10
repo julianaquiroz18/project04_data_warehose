@@ -25,6 +25,6 @@ function login() {
     login.then(json => {
         localStorage.setItem("token", JSON.stringify(json.token));
         localStorage.setItem("isAdmin", JSON.stringify(json.isAdmin));
-        window.open('../views/contacts.html');
+        window.open('../views/contacts.html', '_self');
     }).catch((error) => { console.log(error) });
 }

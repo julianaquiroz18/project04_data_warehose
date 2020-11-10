@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "jquiroz",
+    "author": "julianaquiroz18",
     "license": "MIT",
     "dependencies": {
         "cors": "^2.8.5",
