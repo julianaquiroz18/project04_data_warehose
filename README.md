@@ -1,6 +1,6 @@
 # DATA WAREHOUSE
 
-This project was done using HTML, CSS, Sass, Bootstrap and Javascript in Front-end and Node.JS with Express, MongoDB and Mongoose in Back-end. Author: julianaquiroz18 License: MIT
+This project was done using HTML, CSS, Sass, Bootstrap and Javascript in Front-end and Node.JS with Express, MongoDB and Mongoose in Back-end.   Author: julianaquiroz18   License: MIT
 
 ## How to test it?
 Clone the repository and follow next steps:
@@ -25,7 +25,7 @@ Clone the repository and follow next steps:
     #Install dependencies
     npm install
     #Initialize server
-    npm nodemon server.js
+    npx nodemon server.js
 ```
 4. Use your browser to access: http://localhost:9092/
 
