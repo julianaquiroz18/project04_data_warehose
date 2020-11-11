@@ -13,7 +13,7 @@ Clone the repository and follow next steps:
     npm install
 ```
 
-2. In Data_warehose_BE folder, rename file `sample.env` to `.env`. Please asing the necesary information to each variable.
+2. In Data_warehose_BE folder, rename file `sample.env` to `.env`.
 
 3. Install Back-end dependencies:
 
@@ -25,7 +25,7 @@ Clone the repository and follow next steps:
     #Install dependencies
     npm install
     #Initialize server
-    npm nodemon server.js
+    npx nodemon server.js
 ```
 4. Use your browser to access: http://localhost:9092/
 
