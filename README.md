@@ -1,6 +1,6 @@
 # DATA WAREHOUSE
 
-This project was done using HTML, CSS, Sass, Bootstrap and Javascript in Front-end and Node.JS with Express, MongoDB and Mongoose in Back-end. Author: julianaquiroz18 License: MIT
+This project was done using HTML, CSS, Sass, Bootstrap and Javascript in Front-end and Node.JS with Express, MongoDB and Mongoose in Back-end.   Author: julianaquiroz18   License: MIT
 
 ## How to test it?
 Clone the repository and follow next steps:
