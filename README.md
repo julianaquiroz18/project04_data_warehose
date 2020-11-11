@@ -13,15 +13,25 @@ Clone the repository and follow next steps:
     npm install
 ```
 
-2. In Data_warehose_BE folder, rename file `sample.env` to `.env`.
-
-3. Install Back-end dependencies:
-
+2. Preparing enviroment:
 ```bash
+    #Go back to main folder
+    cd ..
     #Go to Data warehouse BE folder
     cd Data_warehouse_BE
+    #Rename file `sample.env` to `.env`
+    mv sample.env .env 
+    #Make sure homebrew is installed previuosly, if it's not please refer to https://brew.sh instructions.
+    #Install mongo data base tools. (Needed to restore data base)
+    brew install mongodb-database-tools
     #Restore data base
-    mongorestore --archive=data-warehouse.bson --db=data-warehouse
+    mongorestore --archive=data-warehouse.bson --db=data-warehouse   
+```
+
+
+3. Install Back-end dependencies and start server:
+
+```bash
     #Install dependencies
     npm install
     #Initialize server
