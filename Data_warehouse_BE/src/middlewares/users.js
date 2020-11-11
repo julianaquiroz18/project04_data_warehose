@@ -99,6 +99,7 @@ module.exports = {
     checkPassword,
     checkUser,
     checkUserID,
-    checkUserToUpdate
+    checkUserToUpdate,
+    encryptPassword
 
 }

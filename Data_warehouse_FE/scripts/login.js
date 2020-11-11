@@ -1,5 +1,5 @@
 import { apiRequest } from './services.js';
-const BASE_URL = "http://localhost:9092/data_wharehose/v1/";
+const BASE_URL = "/data_wharehose/v1/";
 
 const user = document.querySelector("#user");
 const password = document.querySelector("#password");

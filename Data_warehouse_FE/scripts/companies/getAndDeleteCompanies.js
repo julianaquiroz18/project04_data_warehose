@@ -1,6 +1,6 @@
 import { apiRequest } from '../services.js';
 import { editCompany } from '../companies/editCompany.js';
-const BASE_URL = "http://localhost:9092/data_wharehose/v1/";
+const BASE_URL = "/data_wharehose/v1/";
 
 /**
  * Global Variables

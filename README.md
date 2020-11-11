@@ -21,11 +21,7 @@ Clone the repository and follow next steps:
     cd Data_warehouse_BE
     #Rename file `sample.env` to `.env`
     mv sample.env .env 
-    #Make sure homebrew is installed previuosly, if it's not please refer to https://brew.sh instructions.
-    #Install mongo data base tools. (Needed to restore data base)
-    brew install mongodb-database-tools
-    #Restore data base
-    mongorestore --archive=data-warehouse.bson --db=data-warehouse   
+    #Modify your .env information 
 ```
 
 
@@ -34,17 +30,24 @@ Clone the repository and follow next steps:
 ```bash
     #Install dependencies
     npm install
+    #Initialize data base
+    #Note: Admin email and password would be provided  
+    node bootstraping.js 
     #Initialize server
     npx nodemon server.js
 ```
-4. Use your browser to access: http://localhost:9092/
+4. Use your browser to access: http://localhost:<your .env provided port>/
 
-5. Use next credentials to Data Warehouse app access:    
+5. Use credentials provided to bootstraping script to access to Data Warehouse app.
 
-    As admin:  
-        user: admin1@datawarehouse.com  
-        password: Adminpassword1
+## NOTE:
+All information is related, therefore you will need to add all the information required (Regions, Countries, Cities, Companies) before create contacts.   
 
-    As user:  
-        user: user1@datawarehouse.com  
-        password: Userpassword1
+## NOTE:
+At first glance user can't add few information:  
+
+![No hover image](./images/noHover.png)  
+
+However if user do hover the parent node, add button will appear  
+
+![hover image](./images/hover.png)
